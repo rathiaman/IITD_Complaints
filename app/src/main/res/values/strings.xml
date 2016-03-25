@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">IITD Complaints</string>
+    <string name="title_activity_home_screen">Home</string>
+
+    <string name="name">Hi</string>
+    <string name="profile">Profile</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="options">Options</string>
+
+    <string-array name="search_list">
+        <item>Search</item>
+        <item>Electricity</item>
+        <item>Plumber</item>
+        <item>Carpentry</item>
+        <item>Internet Issues</item>
+        <item>Sweeper</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="filter_list">
+        <item>Filter</item>
+        <item>Show Resolved Only</item>
+        <item>Show Unresolved Only</item>
+       </string-array>
+
+
+</resources>

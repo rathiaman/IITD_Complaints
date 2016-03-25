@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Splash"
+    android:background="#FF6A00">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/splash_screen_image"
+        android:background="@drawable/iitd_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="IIT Delhi"
+        android:id="@+id/textView_IITDelhi"
+        android:textColor="#000000"
+        android:paddingTop="50dp"
+        android:textSize="40dp"
+        android:layout_below="@+id/splash_screen_image"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Complaints"
+        android:id="@+id/textView_Complaints"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:layout_below="@+id/textView_IITDelhi"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
