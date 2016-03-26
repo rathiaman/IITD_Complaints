@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.net.CookieHandler;
 import java.net.CookieManager;
+import java.util.LinkedHashMap;
 
 public class LoginScreen extends AppCompatActivity {
 
@@ -119,9 +120,7 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // calls the function which send the request to the server
-                       // sendRequest();
-                        Intent in = new Intent(LoginScreen.this, HomeScreen.class);
-                        startActivity(in);
+                        sendRequest();
 
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -143,11 +142,6 @@ public class LoginScreen extends AppCompatActivity {
     ///////////////////////////////////
     private void sendRequest() {
 
-        //creates aDialog box
-        final ProgressDialog messageDialog = new ProgressDialog(this);
-        messageDialog.setMessage("Logging in");
-        messageDialog.show();
-
         ip_address_text = (EditText) findViewById(R.id.edit_text_IPAddress);
         IPAddress.setName(ip_address_text.getText().toString());
         String adder1 = IPAddress.getName();
@@ -155,19 +149,20 @@ public class LoginScreen extends AppCompatActivity {
         TextView password_text_for_login = (EditText) findViewById(R.id.edit_text_password);
         TextView user_name_for_login     = (EditText) findViewById(R.id.edit_text_username);
 
-        String password_text_for_login_string   = password_text_for_login.getText().toString().trim();
-        String user_name_for_login_string       = user_name_for_login.getText().toString().trim();
+        final String password_text_for_login_string   = password_text_for_login.getText().toString().trim();
+        final String user_name_for_login_string       = user_name_for_login.getText().toString().trim();
 
         //String url="http://" + adder1 + "/default/login.json?userid=cs1110200&password=john";
 
-        String url="http://" + adder1 + "/default/login.json?userid="+ user_name_for_login_string +"&password="+ password_text_for_login_string;
+        String url="http://" + adder1 + "/complaint_system/user_action/signin_action.php";
+        //+ user_name_for_login_string +"&password="+ password_text_for_login_string
 
-        StringRequest request = new StringRequest(Request.Method.GET, url,
+        StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("hello1", response.toString());
-                        //Toast.makeText(LoginScreen.this, "request sent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, response.toString(), Toast.LENGTH_SHORT).show();
                         PJson(response);
 
                     }
@@ -175,9 +170,21 @@ public class LoginScreen extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(LoginScreen.this, "Network Error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginScreen.this, error.toString(), Toast.LENGTH_SHORT).show();
                     }
-                });
+                }) {
+
+            //used to store data and sent the string request
+            @Override
+            protected LinkedHashMap<String, String> getParams() {
+                LinkedHashMap<String, String> login_credentials = new LinkedHashMap<String, String>();
+                login_credentials.put("user_id", user_name_for_login_string);
+                login_credentials.put("password",password_text_for_login_string);
+                return login_credentials;
+            }
+
+
+        };;
 
         // Add a request (in this example, called stringRequest) to your RequestQueue.
         MySingleton.getInstance(this).addToRequestQueue(request);
@@ -191,7 +198,8 @@ public class LoginScreen extends AppCompatActivity {
         int result = 0;
         try {
             JSONObject Object = new JSONObject(res);
-            Boolean success_value = Object.getBoolean("success");
+            JSONObject outcome = Object.getJSONObject("outcome");
+            Boolean success_value = outcome.getBoolean("status");
             if (!success_value)
                 result = 0;
 
@@ -204,13 +212,25 @@ public class LoginScreen extends AppCompatActivity {
 
 
                 // Toast.makeText(MainActivity.this, myinteger, Toast.LENGTH_SHORT).show();
-                JSONObject user = Object.getJSONObject("user");
-                Integer user_id = user.getInt("id");
-                String first_name = user.getString("first_name");
-                Name_Class.setName("Hi " + first_name);
+                JSONObject detail = Object.getJSONObject("detail");
+                String user_id = detail.getString("user_id");
+                String first_name = detail.getString("first_name");
+                String last_name = detail.getString("last_name");
+                String email = detail.getString("email");
+                String user_type = detail.getString("user_type");
+                String hostel = detail.getString("hostel");
+                String worker_type = detail.getString("worker_type");
+
+                Profile_data.setfirst_Name(first_name);
+                Profile_data.setlast_Name(last_name);
+                Profile_data.setuserid(user_id);
+                Profile_data.set_email(email);
+                Profile_data.setaccount_type(user_type);
+                Profile_data.setHostel(hostel);
+                Profile_data.setWorkertype(worker_type);
+
+
                 Intent in = new Intent(getApplicationContext(), HomeScreen.class);
-                in.putExtra("user", user_id);
-                in.putExtra("Name", first_name);
                 startActivity(in);
 
             }

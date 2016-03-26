@@ -5,18 +5,31 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import java.lang.reflect.Field;
+import java.net.CookieHandler;
+import java.net.CookieManager;
+import java.util.LinkedHashMap;
 
 public class HomeScreen extends AppCompatActivity {
 
 
     public Button personal_complaints, hostel_complaints, institute_complaints;
+    public EditText ip_address_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +63,8 @@ public class HomeScreen extends AppCompatActivity {
         personal_complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(HomeScreen.this, Complaints.class);
-                startActivity(in);
+                int target = 1;
+                sendRequest(target);
             }
         });
     }
@@ -157,5 +170,65 @@ public class HomeScreen extends AppCompatActivity {
         }
        */ return false;
     }
+
+
+    //////////////////////////////////////////////////////////
+    private void sendRequest(int target) {
+
+        String adder1 = IPAddress.getName();
+
+        final String user_id = Profile_data.getuserid();
+        final String hostel = Profile_data.getHostel();
+
+        String url;
+
+        if(target==1) {
+            url = "http://" + adder1 + "/complaint_system/show_complaints/show_personal_complaints.php";
+        }
+        else if(target==2){
+            url = "http://" + adder1 + "/complaint_system/show_complaints/show_hostel_complaints.php";
+        }
+        else{
+            url = "http://" + adder1 + "/complaint_system/show_complaints/show_institute_complaints.php";
+        }
+        //+ user_name_for_login_string +"&password="+ password_text_for_login_string
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("hello1", response.toString());
+                        Toast.makeText(HomeScreen.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        //PJson(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(HomeScreen.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+
+            //used to store data and sent the string request
+            @Override
+            protected LinkedHashMap<String, String> getParams() {
+                LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+                data.put("user_id", user_id);
+                data.put("hostel", hostel);
+                return data;
+            }
+
+
+        };;
+
+        // Add a request (in this example, called stringRequest) to your RequestQueue.
+        MySingleton.getInstance(this).addToRequestQueue(request);
+
+        //for handling cookies
+        CookieManager manager = new CookieManager();
+        CookieHandler.setDefault(manager);
+    }
+
 
 }

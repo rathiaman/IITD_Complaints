@@ -5,7 +5,7 @@ package aau.corp.android.app.iitdcomplaints;
  */
 public class Profile_data {
 
-    public static String first_name, last_name, user_id, email_address, account_type;
+    public static String first_name, last_name, user_id, email_address, account_type, hostel, workertype;
 
     public static String getfirst_Name(){
         return first_name;
@@ -23,11 +23,11 @@ public class Profile_data {
         last_name=name;
     }
 
-    public static String getentryno(){
+    public static String getuserid(){
         return user_id;
     }
 
-    public static void setentryno(String name){
+    public static void setuserid(String name){
         user_id=name;
     }
 
@@ -39,14 +39,28 @@ public class Profile_data {
         email_address=name;
     }
 
-    public static String getaccount_tyep(){
+    public static String getAccount_type(){
         return account_type;
     }
 
-    public static void setaccount_tyep(String name){
+    public static void setaccount_type(String name){
         account_type=name;
     }
 
+    public static String getHostel(){
+        return hostel;
+    }
+
+    public static void setHostel(String name){
+        hostel=name;
+    }
+    public static String getWorkertype(){
+        return workertype;
+    }
+
+    public static void setWorkertype(String name){
+        workertype=name;
+    }
 
 
 
