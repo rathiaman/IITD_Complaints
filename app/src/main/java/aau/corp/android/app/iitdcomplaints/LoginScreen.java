@@ -231,7 +231,6 @@ public class LoginScreen extends AppCompatActivity {
 
                 Intent in = new Intent(getApplicationContext(), HomeScreen.class);
                 startActivity(in);
-
             }
             else{
                 Toast.makeText(LoginScreen.this, "invalid login. Please Check Yor Login Details", Toast.LENGTH_LONG).show();

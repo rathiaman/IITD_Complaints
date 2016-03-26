@@ -19,7 +19,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         /////////////////////////////
         // Login Screen Activity //
         /////////////////////////////
@@ -32,7 +31,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         // Splash Screen Activity //
         /////////////////////////////
@@ -43,7 +41,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         // Home Screen Activity //
         /////////////////////////////
@@ -57,7 +54,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         // Profile Screen Activity //
         /////////////////////////////
@@ -71,7 +67,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Personal Complaints Screen Activity //
         /////////////////////////////
@@ -80,12 +75,11 @@
             android:label="@string/title_activity_personal_complaints"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.PersonalComplaints"/>
+                <action android:name="aau.corp.app.PersonalComplaints" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Hostel Complaints Screen Activity //
         /////////////////////////////
@@ -94,12 +88,11 @@
             android:label="Hostel Complaints"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.HostelComplaints"/>
+                <action android:name="aau.corp.app.HostelComplaints" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Institute Complaints Screen Activity //
         /////////////////////////////
@@ -108,12 +101,11 @@
             android:label="Institute Complaints"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.InstituteComplaints"/>
+                <action android:name="aau.corp.app.InstituteComplaints" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Personal Complaints Launch Screen Activity //
         /////////////////////////////
@@ -122,12 +114,11 @@
             android:label="Launch Personal Complaint"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.LaunchPersonalComplaints"/>
+                <action android:name="aau.corp.app.LaunchPersonalComplaints" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Hostel Complaints Launch Screen Activity //
         /////////////////////////////
@@ -136,12 +127,11 @@
             android:label="Launch Hostel Complaints"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.LaunchHostelComplaints"/>
+                <action android:name="aau.corp.app.LaunchHostelComplaints" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         /////////////////////////////
         //Institute Complaints Launch Screen Activity //
         /////////////////////////////
@@ -150,13 +140,11 @@
             android:label="Launch Institute Complaint"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.LaunchInstituteComplaint"/>
+                <action android:name="aau.corp.app.LaunchInstituteComplaint" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>

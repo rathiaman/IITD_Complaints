@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 public class HomeScreen extends AppCompatActivity {
 
 
-    public Button personal_complaints, hostel_complaints, institute_complaints;
+    public Button personal_complaints, hostel_complaints, institute_complaints, complaints_others;
     public EditText ip_address_text;
 
     @Override
@@ -25,6 +25,8 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+        onButtonClickListener();
+        setbuttontext();
         ///////////////////////////////////
         // Function for the 3 dot button in the top right position
         ///////////////////////////////////
@@ -40,6 +42,27 @@ public class HomeScreen extends AppCompatActivity {
             // Ignore
         }
 
+        complaints_others = (Button) findViewById(R.id.other_complaints);
+        personal_complaints = (Button) findViewById(R.id.personal_complaints);
+        hostel_complaints = (Button) findViewById(R.id.hostel_complaints);
+        institute_complaints = (Button) findViewById(R.id.institute_complaints);
+
+        String account_type_data = Profile_data.getAccount_type();
+
+        if(account_type_data == "Student"){complaints_others.setVisibility(View.GONE);}
+        else {personal_complaints.setVisibility(View.GONE); hostel_complaints.setVisibility(View.GONE); institute_complaints.setVisibility(View.GONE);}
+    }
+
+    public void setbuttontext(){
+
+        complaints_others = (Button) findViewById(R.id.other_complaints);
+        if (Profile_data.getAccount_type() == "Worker"){complaints_others.setText(Profile_data.getWorkertype() + " Complaints");}
+        else if (Profile_data.getAccount_type() == "Institute Person"){complaints_others.setText("Institute Complaints");}
+        else {complaints_others.setText(Profile_data.getHostel() + " Hostel Complaints");}
+
+    }
+
+    public void onButtonClickListener(){
         personal_complaints = (Button) findViewById(R.id.personal_complaints);
         personal_complaints.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +91,6 @@ public class HomeScreen extends AppCompatActivity {
         });
 
     }
-
-
 
     ///////////////////////////////////
     // This function is for back pressed button
@@ -134,7 +155,7 @@ public class HomeScreen extends AppCompatActivity {
         String text = Name_Class.getName();
 
         MenuItem name_wala_item = menu.findItem(R.id.name_first_menu_display);
-        name_wala_item.setTitle(text);
+        name_wala_item.setTitle("Hi " + Profile_data.getfirst_Name());
         // menu.getItem(R.id.name_first_menu_display).setTitle(text);
 
         return true;
@@ -152,9 +173,6 @@ public class HomeScreen extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
 
-        //  String first_name_text = getIntent().getExtras().getString("Name");
-        //   String text = "Hi " + first_name_text;
-        ///////////////////////////////////
         // Function if You click on The Profie Item
         ///////////////////////////////////
         if (id == R.id.profile) {

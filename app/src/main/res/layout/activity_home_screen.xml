@@ -11,7 +11,7 @@
     tools:context="aau.corp.android.app.iitdcomplaints.HomeScreen">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/personal_complaints"
         android:layout_centerHorizontal="true"
@@ -24,7 +24,7 @@
         android:layout_marginTop="20dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/hostel_complaints"
         android:background="#c81126"
@@ -40,7 +40,7 @@
         android:layout_alignLeft="@+id/personal_complaints"
         android:layout_alignStart="@+id/personal_complaints" />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/institute_complaints"
         android:layout_centerHorizontal="true"
@@ -56,5 +56,24 @@
         android:layout_alignEnd="@+id/personal_complaints"
         android:layout_alignLeft="@+id/personal_complaints"
         android:layout_alignStart="@+id/personal_complaints" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/other_complaints"
+        android:layout_centerHorizontal="true"
+        android:background="#c81126"
+        android:textColor="#FFFFFF"
+        android:text="Other Complaints"
+        android:textSize="20dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:layout_below="@+id/institute_complaints"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/personal_complaints"
+        android:layout_alignEnd="@+id/personal_complaints"
+        android:layout_alignLeft="@+id/personal_complaints"
+        android:layout_alignStart="@+id/personal_complaints" />
+
 
 </RelativeLayout>

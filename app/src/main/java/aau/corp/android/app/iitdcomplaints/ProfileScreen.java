@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +24,8 @@ import org.json.JSONObject;
 
 public class ProfileScreen extends AppCompatActivity {
 
-    TextView first_name, last_name, user_id, email_address, account_type;
-
+    TextView first_name, last_name, user_id, email_address, account_type, hostel, worker_type;
+    TextView text_worker_type, text_hostel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +35,25 @@ public class ProfileScreen extends AppCompatActivity {
         last_name = (TextView) findViewById(R.id.last_name_answer);
         user_id = (TextView) findViewById(R.id.user_id_answer);
         email_address = (TextView) findViewById(R.id.email_address_answer);
-        account_type = (TextView) findViewById(R.id.email_address_answer);
+        account_type = (TextView) findViewById(R.id.account_type_answer);
+        hostel = (TextView) findViewById(R.id.hostel_answer);
+        worker_type = (TextView) findViewById(R.id.worker_type_answer);
+
+        text_worker_type = (TextView) findViewById(R.id.worker_type);
+        text_hostel = (TextView) findViewById(R.id.hostel);
 
         first_name.setText(Profile_data.getfirst_Name());
         last_name.setText(Profile_data.getlast_Name());
         user_id.setText(Profile_data.getuserid());
         email_address.setText(Profile_data.get_email());
         account_type.setText(Profile_data.getAccount_type());
+        hostel.setText(Profile_data.getHostel());
+        worker_type.setText(Profile_data.getWorkertype());
 
+        if(account_type.getText() == "Worker"){hostel.setVisibility(View.GONE);
+                                               text_hostel.setVisibility(View.GONE);     }
+
+        if (account_type.getText() != "Worker"){worker_type.setVisibility(View.GONE); text_worker_type.setVisibility(View.GONE);}
     }
 
 
