@@ -10,7 +10,17 @@
     android:background="#FF6A00"
     tools:context="aau.corp.android.app.iitdcomplaints.InstituteComplaints">
 
-    <Button
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/launch_complaint_institute"
@@ -43,5 +53,20 @@
         android:layout_alignEnd="@+id/launch_complaint_institute"
         android:layout_marginTop="10dp">
     </Spinner>
+
+            <TableLayout
+                android:id="@+id/complaint_institute_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

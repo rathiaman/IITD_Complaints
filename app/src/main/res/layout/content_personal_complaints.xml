@@ -10,6 +10,15 @@
     android:background="#FF6A00"
     tools:context="aau.corp.android.app.iitdcomplaints.PersonalComplaints">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,51 +62,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
-        <TableRow>
-
-            <TextView
-                android:text="S.No"
-                android:textSize="20dp"
-                android:clickable="false"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="6dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:text="Title"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView"
-                android:layout_column="1"
-                android:clickable="false"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="6dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:text="Status"
-                android:textSize="20dp"
-                android:layout_column="5"
-                android:clickable="false"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="6dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:text="Time"
-                android:textSize="20dp"
-                android:layout_column="5"
-                android:clickable="false"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="6dp"
-                android:textStyle="bold" />
-
-
-
-        </TableRow>
 
     </TableLayout>
 
+            </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

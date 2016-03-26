@@ -166,19 +166,11 @@ public class PersonalComplaints extends AppCompatActivity {
                 {
                     status_array[i] = "resolved";
                 }
-
-                //title_array[i] = "tit";
-                //status_array[i] ="stat";
                time_array[i] = childJSONObject.getString("time");
-                Toast.makeText(PersonalComplaints.this, status_array[i], Toast.LENGTH_SHORT).show();
 
 
                 //  time_array[i] = "time";
             }
-
-            /////////////
-
-//            Toast.makeText(ThreadActivity.this,"size" + title_array.length, Toast.LENGTH_SHORT ).show();
 
             create_complaint_table();
         }catch (JSONException e){
@@ -190,73 +182,121 @@ public class PersonalComplaints extends AppCompatActivity {
 
     public void create_complaint_table()
     {
-        TableLayout complaint_table = (TableLayout) findViewById(R.id.complaint_table);
 
-        for(int i =0 ; i< title_array.length ; i++) {
+        TableLayout course_assig_table = (TableLayout) findViewById(R.id.complaint_table);
+        course_assig_table.setColumnShrinkable(2, true);
+        course_assig_table.setStretchAllColumns(true);
 
-            ///////////////////////////////////
+
+        for (int i = 0; i < title_array.length; i++) {
             //Creating new tablerows and textviews
-            ///////////////////////////////////
-            TableRow row    =   new TableRow(this);
+            TableRow row1 = new TableRow(this);
+            //layout parameters
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
+            int leftMargin = 0;
+            int topMargin = 0;
+            int rightMargin = 0;
+            int bottomMargin = 0;
+            lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+            //making textview
             TextView sno = new TextView(this);
-            TextView title   =   new TextView(this);
-            TextView status=   new TextView(this);
-            TextView updated_at   =   new TextView(this);
-
-            ///////////////////////////////////
-            //setting the text
-            ///////////////////////////////////
-           // title.setText(title_array[i]);
-            title.setText("hw");
-            status.setText("ygd");
-            updated_at.setText("hjd");
-            sno.setText(String.valueOf(i + 1));
-            //status.setText(status_array[i]);
-            //updated_at.setText(time_array[i]);
-
-            ///////////////////////////////////
-            //setting the allignment
-            ///////////////////////////////////
-            sno.setGravity(Gravity.CENTER);
-            title.setGravity(Gravity.CENTER);
-            status.setGravity(Gravity.CENTER);
-            updated_at.setGravity(Gravity.CENTER);
+            TextView title = new TextView(this);
+            //setting the values of textview
+            sno.setText(String.valueOf(i + 1) + ". ");
+            title.setText(title_array[i]);
+            //for giving span to the name
+            TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+            trParam.column = 1;
+            //layout parametrrs for the name
+            title.setLayoutParams(trParam);
+            title.setTextSize(15);
             title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
             title.setTypeface(Typeface.DEFAULT);
             title.setTextColor(Color.BLUE);
             title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            sno.setTextSize(15);
+            sno.setTypeface(null, Typeface.BOLD);
+            //add textview to the row
 
-            ///////////////////////////////////
-            //declaration as final so that i can be used in onclicklistener
-            ///////////////////////////////////
-           // final int idOfThread = id_array[i];
+            //finished with setting layout
 
-            ///////////////////////////////////
-            // On Click Listener
-            ///////////////////////////////////
-            title.setOnClickListener(new View.OnClickListener() {
+            row1.addView(sno);
+            row1.addView(title);
+            row1.setGravity(Gravity.CENTER);
+            //set the layoout parameters for the row
+            course_assig_table.addView(row1);
+///////////////////////////////////////////////////////
 
-                @Override
-                public void onClick(View v) {
-                    // Toast.makeText(ThreadActivity.this,"Clicked",Toast.LENGTH_SHORT).show();
+            TableRow row2 = new TableRow(this);
+            TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            int leftMargin2 = 0;
+            int topMargin2 = 0;
+            int rightMargin2 = 0;
+            int bottomMargin2 = 0;
+            lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+            //making textview
+
+            TextView blank2 = new TextView(this);
+            TextView status = new TextView(this);
+            //TextView time = new TextView(this);
+
+            status.setText(status_array[i]);
+            blank2.setText("Status:");
+            // time.setText(time_array[i]);
+            status.setTextSize(15);
+            // time.setTextSize(15);
+            row2.addView(blank2);
+            row2.addView(status);
+
+            // row3.addView(time);
+            row2.setLayoutParams(lp2);
+            row2.setGravity(Gravity.CENTER);
+            course_assig_table.addView(row2);
 
 
 
-                }
-            });
 
-            ///////////////////////////////////
-            //the textviews have to be added to the row created
-            ///////////////////////////////////
-            row.addView(sno);
-            row.addView(title);
-            row.addView(status);
-            row.addView(updated_at);
+///////////////////////////////////////////////////////
+            TableRow row3 = new TableRow(this);
+            TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            int leftMargin3 = 0;
+            int topMargin3 = 0;
+            int rightMargin3 = 0;
+            int bottomMargin3 = 0;
+            lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+            //making textview
 
-            complaint_table.addView(row);}
+            TextView blank3 = new TextView(this);
+            //TextView status = new TextView(this);
+           TextView time = new TextView(this);
 
+           // status.setText(status_array[i]);
+            blank3.setText("Posted At:");
+            time.setText(time_array[i]);
+           // status.setTextSize(15);
+            time.setTextSize(15);
+            row3.addView(blank3);
+            row3.addView(time);
+            row3.setLayoutParams(lp3);
+            row3.setGravity(Gravity.CENTER);
+            course_assig_table.addView(row3);
+/////////////////////////////////////
+            //entering blank row
+
+            TableRow row4 = new TableRow(this);
+            TextView blank_1 = new TextView(this);
+            TextView blank_2 = new TextView(this);
+            TextView blank_3 = new TextView(this);
+            blank_1.setText("  ");
+            blank_2.setText("  ");
+            blank_3.setText("  ");
+            row4.addView(blank_1);
+            row4.addView(blank_2);
+            row4.addView(blank_3);
+            row3.setLayoutParams(lp3);
+            course_assig_table.addView(row4);
+        }
 
     }
+
 }
