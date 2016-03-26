@@ -5,25 +5,14 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import java.lang.reflect.Field;
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.util.LinkedHashMap;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -35,10 +24,6 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        onButtonClickListener_Personal();
-
-        hostel_complaints = (Button) findViewById(R.id.hostel_complaints);
-        institute_complaints = (Button) findViewById(R.id.institute_complaints);
 
         ///////////////////////////////////
         // Function for the 3 dot button in the top right position
@@ -55,19 +40,36 @@ public class HomeScreen extends AppCompatActivity {
             // Ignore
         }
 
-    }
-
-
-    public void onButtonClickListener_Personal(){
         personal_complaints = (Button) findViewById(R.id.personal_complaints);
         personal_complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int target = 1;
-                sendRequest(target);
+                Intent in = new Intent(getApplicationContext(), PersonalComplaints.class);
+                startActivity(in);
+
             }
         });
+        hostel_complaints = (Button) findViewById(R.id.hostel_complaints);
+        hostel_complaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), HostelComplaints.class);
+                startActivity(in);
+            }
+        });
+        institute_complaints = (Button) findViewById(R.id.institute_complaints);
+        institute_complaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), InstituteComplaints.class);
+                startActivity(in);
+
+            }
+        });
+
     }
+
+
 
     ///////////////////////////////////
     // This function is for back pressed button
@@ -160,11 +162,7 @@ public class HomeScreen extends AppCompatActivity {
             Intent in = new Intent(HomeScreen.this, ProfileScreen.class);
             startActivity(in);
 
-            /*Intent profile_page = new Intent(getApplicationContext(), ProfileScreen.class);
-            Integer user_id=  getIntent().getExtras().getInt("user");
-            profile_page.putExtra("user",user_id);
-            startActivity(profile_page);*/
-        }
+           }
        /* if (id == R.id.sign_out) {
             signout_method();
         }
@@ -173,6 +171,7 @@ public class HomeScreen extends AppCompatActivity {
 
 
     //////////////////////////////////////////////////////////
+/*
     private void sendRequest(int target) {
 
         String adder1 = IPAddress.getName();
@@ -184,12 +183,23 @@ public class HomeScreen extends AppCompatActivity {
 
         if(target==1) {
             url = "http://" + adder1 + "/complaint_system/show_complaints/show_personal_complaints.php";
+            Intent in = new Intent(getApplicationContext(), PersonalComplaints.class);
+            startActivity(in);
+
+
         }
         else if(target==2){
             url = "http://" + adder1 + "/complaint_system/show_complaints/show_hostel_complaints.php";
+            Intent in = new Intent(getApplicationContext(), HostelComplaints.class);
+            startActivity(in);
+
+
+
         }
         else{
             url = "http://" + adder1 + "/complaint_system/show_complaints/show_institute_complaints.php";
+            Intent in = new Intent(getApplicationContext(), InstituteComplaints.class);
+            startActivity(in);
         }
         //+ user_name_for_login_string +"&password="+ password_text_for_login_string
 
@@ -225,10 +235,9 @@ public class HomeScreen extends AppCompatActivity {
         // Add a request (in this example, called stringRequest) to your RequestQueue.
         MySingleton.getInstance(this).addToRequestQueue(request);
 
-        //for handling cookies
-        CookieManager manager = new CookieManager();
-        CookieHandler.setDefault(manager);
+
     }
 
+*/
 
 }

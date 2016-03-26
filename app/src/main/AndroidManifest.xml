@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="aau.corp.android.app.iitdcomplaints">
 
-
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="23" />
@@ -10,6 +9,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +19,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         /////////////////////////////
         // Login Screen Activity //
         /////////////////////////////
@@ -29,6 +32,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         /////////////////////////////
         // Splash Screen Activity //
         /////////////////////////////
@@ -39,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         /////////////////////////////
         // Home Screen Activity //
         /////////////////////////////
@@ -52,6 +57,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         /////////////////////////////
         // Profile Screen Activity //
         /////////////////////////////
@@ -66,18 +72,87 @@
             </intent-filter>
         </activity>
 
-
         /////////////////////////////
-        // Complaints Screen Activity //
+        //Personal Complaints Screen Activity //
         /////////////////////////////
         <activity
-            android:name=".Complaints"
-            android:label="Complaints"
+            android:name=".PersonalComplaints"
+            android:label="@string/title_activity_personal_complaints"
             android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="aau.corp.app.Complaints" />
+                <action android:name="aau.corp.app.PersonalComplaints"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        /////////////////////////////
+        //Hostel Complaints Screen Activity //
+        /////////////////////////////
+        <activity
+            android:name=".HostelComplaints"
+            android:label="Hostel Complaints"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="aau.corp.app.HostelComplaints"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        /////////////////////////////
+        //Institute Complaints Screen Activity //
+        /////////////////////////////
+        <activity
+            android:name=".InstituteComplaints"
+            android:label="Institute Complaints"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="aau.corp.app.InstituteComplaints"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        /////////////////////////////
+        //Personal Complaints Launch Screen Activity //
+        /////////////////////////////
+        <activity
+            android:name=".LaunchPersonalComplaint"
+            android:label="Launch Personal Complaint"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="aau.corp.app.LaunchPersonalComplaints"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        /////////////////////////////
+        //Hostel Complaints Launch Screen Activity //
+        /////////////////////////////
+        <activity
+            android:name=".LaunchHostelComplaint"
+            android:label="Launch Hostel Complaints"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="aau.corp.app.LaunchHostelComplaints"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        /////////////////////////////
+        //Institute Complaints Launch Screen Activity //
+        /////////////////////////////
+        <activity
+            android:name=".LaunchInstituteComplaint"
+            android:label="Launch Institute Complaint"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="aau.corp.app.LaunchInstituteComplaint"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
 

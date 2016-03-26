@@ -21,7 +21,27 @@
         <item>Filter</item>
         <item>Show Resolved Only</item>
         <item>Show Unresolved Only</item>
-       </string-array>
+    </string-array>
+
+    <string-array name="hostel_list">
+        <item>Aravali</item>
+        <item>Girnar</item>
+        <item>Himadri</item>
+        <item>Jwalamukhi</item>
+        <item>Kailash</item>
+        <item>Karakoram</item>
+        <item>Kumaon</item>
+        <item>Nilgiri</item>
+        <item>Satpura</item>
+        <item>Shivalik</item>
+        <item>Udaigiri</item>
+        <item>Vindhyachal</item>
+        <item>Zanskar</item>
+    </string-array>
+
+    <string name="title_activity_personal_complaints">Personal Complaints</string>
+    <string name="title_activity_hostel_complaints">Hostel Complaints</string>
+    <string name="title_activity_insitute_complaints">Insitute Complaints</string>
 
 
 </resources>
