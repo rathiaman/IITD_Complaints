@@ -115,7 +115,6 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 submitNewComment();
-
                 personal_comment.setText("");
             }
         });
@@ -252,7 +251,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
                 }
 
-            //create_complaint_table();
+            create_complaint_table();
         }catch (JSONException e){
             e.printStackTrace();}
 
@@ -320,7 +319,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
             //TextView time = new TextView(this);
 
             comment_given.setText(comment_array[i]);
-            blank2.setText("Status:");
+            blank2.setText("Comment:");
             // time.setText(time_array[i]);
             comment_given.setTextSize(15);
             // time.setTextSize(15);
