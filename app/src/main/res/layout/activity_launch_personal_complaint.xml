@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Title"
+        android:text="Title*"
         android:id="@+id/textview_complaint_title"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -40,13 +40,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:textSize="20dp"
+        android:singleLine="true"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Description"
+        android:text="Description*"
         android:id="@+id/textview_complaint_description"
         android:layout_below="@+id/editText_complaint_title"
         android:layout_alignParentLeft="true"
@@ -71,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Type"
+        android:text="Type*"
         android:id="@+id/textview_complaint_type"
         android:layout_below="@+id/editText_complaint_description"
         android:layout_alignParentLeft="true"
@@ -100,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Room No."
+        android:text="Room No.*"
         android:id="@+id/textview_complaint_room_no"
         android:layout_below="@+id/spinner_complaint_type_list"
         android:layout_alignParentLeft="true"
@@ -119,6 +120,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:textSize="20dp"
+        android:singleLine="true"
         />
 
 
@@ -126,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Contact Info"
+        android:text="Contact Info*"
         android:id="@+id/textview_complaint_contact_info"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -145,13 +147,37 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:textSize="20dp"
+        android:singleLine="true"
         />
 
-    <Button
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Image"
+                android:id="@+id/personal_complaint_image_button"
+                android:background="#c81126"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:layout_below="@+id/editText_complaint_contact_info"
+                android:layout_alignRight="@+id/submit_button_personal_complaint_launch"
+                android:layout_alignEnd="@+id/submit_button_personal_complaint_launch"
+                android:layout_alignLeft="@+id/submit_button_personal_complaint_launch"
+                android:layout_alignStart="@+id/submit_button_personal_complaint_launch" />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@+id/personal_complaint_image_button"
+                android:id="@+id/imageView_personal_complaint_launch" />
+
+
+            <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/submit_button"
-        android:layout_below="@+id/editText_complaint_contact_info"
+        android:id="@+id/submit_button_personal_complaint_launch"
+        android:layout_below="@+id/imageView_personal_complaint_launch"
         android:layout_centerHorizontal="true"
         android:background="#c81126"
         android:textColor="#FFFFFF"
@@ -160,6 +186,17 @@
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*marked fields are mandatory"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/text_view_personal_complaint_launch_mandatory"
+                android:layout_below="@+id/submit_button_personal_complaint_launch"
+                android:textSize="15sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp" />
 
 
         </RelativeLayout>
