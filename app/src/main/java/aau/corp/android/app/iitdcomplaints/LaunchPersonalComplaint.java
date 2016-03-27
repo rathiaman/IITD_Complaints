@@ -250,9 +250,11 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
             // Add a request (in this example, called stringRequest) to your RequestQueue.
             MySingleton.getInstance(this).addToRequestQueue(request);
             Toast.makeText(LaunchPersonalComplaint.this, "Your Complaint Has Been Posted", Toast.LENGTH_SHORT).show();
-            Intent in = new Intent(LaunchPersonalComplaint.this, PersonalComplaints.class);
+            onBackPressed();
+
+            /*Intent in = new Intent(LaunchPersonalComplaint.this, PersonalComplaints.class);
             startActivity(in);
-            //loading.hide();
+            *///loading.hide();
         }
     }
 

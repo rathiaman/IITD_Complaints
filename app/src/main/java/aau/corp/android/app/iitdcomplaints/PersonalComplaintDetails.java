@@ -38,7 +38,14 @@ public class PersonalComplaintDetails {
     }
 
     public static void setParticular_personal_complaint_complaint_type(String name){
-        particular_personal_complaint_complaint_type=name;
+
+        if (Integer.parseInt(name) == 1){particular_personal_complaint_complaint_type = "Electricity";}
+        else if (Integer.parseInt(name) == 2){particular_personal_complaint_complaint_type = "Plumber";}
+        else if (Integer.parseInt(name) == 3){particular_personal_complaint_complaint_type = "Carpentry";}
+        else if (Integer.parseInt(name) == 4){particular_personal_complaint_complaint_type = "Internet Issues";}
+        else if (Integer.parseInt(name) == 5){particular_personal_complaint_complaint_type = "Sweeper";}
+        else if (Integer.parseInt(name) == 6){particular_personal_complaint_complaint_type = "Others";}
+        else {particular_personal_complaint_complaint_type = "None";}
     }
 
     public static String getParticular_personal_complaint_status(){
