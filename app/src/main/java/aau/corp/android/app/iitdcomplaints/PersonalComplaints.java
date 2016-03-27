@@ -37,7 +37,7 @@ public class PersonalComplaints extends AppCompatActivity {
     ArrayAdapter<CharSequence> search_list_adapter, filter_list_adapter;
     Button launch_personal_complaint;
 
-    String[] title_array,time_array,status_array;
+    String[] title_array,time_array,status_array,room_array,contact_array,type_array,description_array,id_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +153,12 @@ public class PersonalComplaints extends AppCompatActivity {
             title_array = new String[mainObject.length()];
             status_array = new String[mainObject.length()];
             time_array = new String[mainObject.length()];
+            room_array = new String[mainObject.length()];
+            contact_array = new String[mainObject.length()];
+            type_array = new String[mainObject.length()];
+            description_array = new String[mainObject.length()];
+            id_array = new String[mainObject.length()];
+
 
             for (int i = 0; i < mainObject.length(); i++) {
                 JSONObject childJSONObject = mainObject.getJSONObject(i);
@@ -167,6 +173,11 @@ public class PersonalComplaints extends AppCompatActivity {
                     status_array[i] = "resolved";
                 }
                time_array[i] = childJSONObject.getString("time");
+                room_array[i]= childJSONObject.getString("room_no");
+                contact_array[i]=childJSONObject.getString("contact_info");
+                type_array[i]= childJSONObject.getString("tags");
+                description_array[i] = childJSONObject.getString("description");
+                id_array[i]=childJSONObject.getString("complaint_id");
 
 
                 //  time_array[i] = "time";
@@ -214,6 +225,36 @@ public class PersonalComplaints extends AppCompatActivity {
             title.setTypeface(Typeface.DEFAULT);
             title.setTextColor(Color.BLUE);
             title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            final String complaint_title = title_array[i];
+            final String room_no = room_array[i];
+            final String contact_info = contact_array[i];
+            final String complaint_type = type_array[i];
+            final String complaint_status = status_array[i];
+            final String complaint_description = description_array[i];
+            final String complaint_id = id_array[i];
+
+
+            title.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(PersonalComplaints.this, ParticularPersonalComplaint.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_COMPLAINT_TITLE", complaint_title);
+                    extras.putString("EXTRA_COMPLAINT_ROOM", room_no);
+                    extras.putString("EXTRA_COMPLAINT_CONTACT", contact_info);
+                    extras.putString("EXTRA_COMPLAINT_TYPE", complaint_type);
+                    extras.putString("EXTRA_COMPLAINT_STATUS",complaint_status);
+                    extras.putString("EXTRA_COMPLAINT_DESCRIPTION",complaint_description);
+                    extras.putString("EXTRA_COMPLAINT_ID",complaint_id);
+
+                    in.putExtras(extras);
+
+                    startActivity(in);
+
+                }
+            });
+
             sno.setTextSize(15);
             sno.setTypeface(null, Typeface.BOLD);
             //add textview to the row

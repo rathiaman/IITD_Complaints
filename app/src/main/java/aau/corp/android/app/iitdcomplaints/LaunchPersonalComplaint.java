@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +29,7 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
     ArrayAdapter<CharSequence> type_list_adapter, hostel_list_adapter;
     Button submit;
     private static EditText comment_title_edittext, description_edittext,room_no_edittext,contact_edittext;
+    Integer complaint_typo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,38 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " --", Toast.LENGTH_LONG).show();
+
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                if(selectedItem.equals("Electricity"))
+                {
+                    complaint_typo=1;
+                }
+                else if (selectedItem.equals("Plumber"))
+                {
+                    complaint_typo =2;
+                }
+                else if (selectedItem.equals("Carpentry"))
+                {
+                    complaint_typo =3;
+                }
+                else if (selectedItem.equals("Internet Issues"))
+                {
+                    complaint_typo =4;
+                }
+                else if (selectedItem.equals("Sweeper"))
+                {
+                    complaint_typo =5;
+                }
+                else
+                {complaint_typo=6;}
+
+
             }
+
+
+
+
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -52,22 +85,6 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
             }
         });
 
-        spinner_hostel_list = (Spinner) findViewById(R.id.spinner_hostel_list);
-        hostel_list_adapter = ArrayAdapter.createFromResource(this, R.array.hostel_list, android.R.layout.simple_spinner_item);
-        hostel_list_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_hostel_list.setAdapter(hostel_list_adapter);
-
-        spinner_hostel_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " --", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
 
@@ -95,7 +112,7 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
         final String description = description_edittext.getText().toString();
         final String room_no = room_no_edittext.getText().toString();
         final String contact = contact_edittext.getText().toString();
-        final String tag_int = "2";
+        final String tag_int = complaint_typo.toString();
         String adder1 = IPAddress.getName();
 
 
