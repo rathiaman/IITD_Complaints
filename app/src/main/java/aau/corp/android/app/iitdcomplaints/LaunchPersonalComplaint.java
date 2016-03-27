@@ -237,7 +237,7 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
 
                     if (bitmap != null){
                         String image = getStringImage(bitmap);
-                        login_credentials.put("KEY_IMAGE", image);}
+                        login_credentials.put(KEY_IMAGE, image);}
 
                     return login_credentials;
                 }

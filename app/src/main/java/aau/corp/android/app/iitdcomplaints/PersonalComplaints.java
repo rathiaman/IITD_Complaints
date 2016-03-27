@@ -238,8 +238,17 @@ public class PersonalComplaints extends AppCompatActivity {
 
                 @Override
                 public void onClick(View v) {
+
+                    PersonalComplaintDetails.setparticular_personal_complaint_title(complaint_title);
+                    PersonalComplaintDetails.setParticular_personal_complaint_room_no(room_no);
+                    PersonalComplaintDetails.setParticular_personal_complaint_contact_info(contact_info);
+                    PersonalComplaintDetails.setParticular_personal_complaint_complaint_type(complaint_type);
+                    PersonalComplaintDetails.setParticular_personal_complaint_status(complaint_status);
+                    PersonalComplaintDetails.setParticular_personal_complaint_description(complaint_description);
+                    PersonalComplaintDetails.setParticular_personal_complaint_id(complaint_id);
+
                     Intent in = new Intent(PersonalComplaints.this, ParticularPersonalComplaint.class);
-                    Bundle extras = new Bundle();
+                    /*Bundle extras = new Bundle();
                     extras.putString("EXTRA_COMPLAINT_TITLE", complaint_title);
                     extras.putString("EXTRA_COMPLAINT_ROOM", room_no);
                     extras.putString("EXTRA_COMPLAINT_CONTACT", contact_info);
@@ -248,7 +257,7 @@ public class PersonalComplaints extends AppCompatActivity {
                     extras.putString("EXTRA_COMPLAINT_DESCRIPTION",complaint_description);
                     extras.putString("EXTRA_COMPLAINT_ID",complaint_id);
 
-                    in.putExtras(extras);
+                    in.putExtras(extras);*/
 
                     startActivity(in);
 

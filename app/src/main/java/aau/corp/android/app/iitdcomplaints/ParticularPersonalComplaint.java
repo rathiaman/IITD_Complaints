@@ -50,14 +50,22 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         ///////////////////////////////////
         // Extracting from intent bundle
         ///////////////////////////////////
-        complaint_title1 = extras.getString("EXTRA_COMPLAINT_TITLE");
+
+        complaint_title1 = PersonalComplaintDetails.getParticular_personal_complaint_title();
+        complaint_roomno1 = PersonalComplaintDetails.getParticular_personal_complaint_room_no();
+        complaint_contactinfo1 = PersonalComplaintDetails.getParticular_personal_complaint_contact_info();
+        complaint_complainttype1 = PersonalComplaintDetails.getParticular_personal_complaint_complaint_type();
+        complaint_status1 = PersonalComplaintDetails.getParticular_personal_complaint_status();
+        complaint_description1 = PersonalComplaintDetails.getParticular_personal_complaint_description();
+        complaint_id1 = PersonalComplaintDetails.getParticular_personal_complaint_id();
+        /*complaint_title1 = extras.getString("EXTRA_COMPLAINT_TITLE");
         complaint_roomno1 = extras.getString("EXTRA_COMPLAINT_ROOM");
         complaint_contactinfo1 = extras.getString("EXTRA_COMPLAINT_CONTACT");
         complaint_complainttype1 = extras.getString("EXTRA_COMPLAINT_TYPE");
         complaint_status1 = extras.getString("EXTRA_COMPLAINT_STATUS");
         complaint_description1 = extras.getString("EXTRA_COMPLAINT_DESCRIPTION");
         complaint_id1 = extras.getString("EXTRA_COMPLAINT_ID");
-
+*/
         TextView complaint_title = (TextView)findViewById(R.id.particular_personal_complaint_title_answer);
         TextView complaint_postedby= (TextView)findViewById(R.id.particular_personal_complaint_posted_by_answer);
         TextView complaint_roomno = (TextView)findViewById(R.id.particular_personal_complaint_room_no_answer);
@@ -116,6 +124,9 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
             public void onClick(View view) {
                 submitNewComment();
                 personal_comment.setText("");
+                Intent in = new Intent(ParticularPersonalComplaint.this, ParticularPersonalComplaint.class);
+                startActivity(in);
+
             }
         });
 
