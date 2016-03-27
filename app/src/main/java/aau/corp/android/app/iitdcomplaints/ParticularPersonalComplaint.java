@@ -34,6 +34,9 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
     Button personal_post_comment;
     private static EditText personal_comment;
     String complaint_id1,complaint_title1,complaint_roomno1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
+    String complaint_hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
+
+    String logged_in_user_first_name, logged_in_user_last_name;
 
     String[] comment_array,time_comment_array,first_name_array,last_name_array;
 
@@ -58,6 +61,9 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         complaint_status1 = PersonalComplaintDetails.getParticular_personal_complaint_status();
         complaint_description1 = PersonalComplaintDetails.getParticular_personal_complaint_description();
         complaint_id1 = PersonalComplaintDetails.getParticular_personal_complaint_id();
+        complaint_hostel1 = PersonalComplaintDetails.getParticular_personal_complaint_hostel();
+        complaint_posted_by_first_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_first_name();
+        complaint_posted_by_last_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_last_name();
         /*complaint_title1 = extras.getString("EXTRA_COMPLAINT_TITLE");
         complaint_roomno1 = extras.getString("EXTRA_COMPLAINT_ROOM");
         complaint_contactinfo1 = extras.getString("EXTRA_COMPLAINT_CONTACT");
@@ -71,48 +77,35 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         TextView complaint_roomno = (TextView)findViewById(R.id.particular_personal_complaint_room_no_answer);
         TextView complaint_hostel =(TextView)findViewById(R.id.particular_personal_complaint_hostel_answer);
         TextView complaint_type =(TextView)findViewById(R.id.particular_personal_complaint_type_answer);
-        TextView complaint_contactinfo =(TextView)findViewById(R.id.particular_personal_complaint_conatct_info_answer);
+        TextView complaint_contactinfo =(TextView)findViewById(R.id.particular_personal_complaint_contact_info_answer);
         TextView complaint_status =(TextView)findViewById(R.id.particular_personal_complaint_status_answer);
         TextView complaint_description =(TextView)findViewById(R.id.particular_personal_complaint_description_answer);
 
 
 
         complaint_title.setText(complaint_title1);
-        complaint_postedby.setText(Profile_data.getuserid());
+        complaint_postedby.setText(complaint_posted_by_first_name_1 + " " + complaint_posted_by_last_name_1);
         complaint_roomno.setText(complaint_roomno1);
-        complaint_hostel.setText(Profile_data.getHostel());
-
-        if(complaint_complainttype1.equals("1"))
-        {
-            complaint_type.setText("Electricity");
-        }
-        else if (complaint_complainttype1.equals("2"))
-        {
-            complaint_type.setText("Plumber");
-        }
-        else if (complaint_complainttype1.equals("3"))
-        {
-            complaint_type.setText("Carpentry");
-        }
-        else if (complaint_complainttype1.equals("4"))
-        {
-            complaint_type.setText("Internet Issues");;
-        }
-        else if (complaint_complainttype1.equals("5"))
-        {
-            complaint_type.setText("Sweeper");;
-        }
-        else
-        {complaint_type.setText("Others");;}
-
-
+        complaint_hostel.setText(complaint_hostel1);
 
         complaint_type.setText(complaint_complainttype1);
-
         complaint_contactinfo.setText(complaint_contactinfo1);
         complaint_status.setText(complaint_status1);
         complaint_description.setText(complaint_description1);
 
+        //logged_in_user = Profile_data.getfirst_Name() + " " + Profile_data.getlast_Name();
+        logged_in_user_first_name = Profile_data.getfirst_Name();
+        logged_in_user_last_name = Profile_data.getlast_Name();
+
+        Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_first_name + " ==== logged in user first name", Toast.LENGTH_LONG).show();
+        Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_last_name + " ==== logged in user last name", Toast.LENGTH_LONG).show();
+
+        if (logged_in_user_first_name == complaint_posted_by_first_name_1){
+            if (logged_in_user_last_name == complaint_posted_by_last_name_1){
+                Toast.makeText(ParticularPersonalComplaint.this, " Ghusa andar", Toast.LENGTH_LONG).show();
+                complaint_postedby.setVisibility(View.GONE);
+            }
+        }
 
         display_comment_data();
 

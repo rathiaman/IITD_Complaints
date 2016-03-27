@@ -37,7 +37,7 @@ public class PersonalComplaints extends AppCompatActivity {
     ArrayAdapter<CharSequence> search_list_adapter, filter_list_adapter;
     Button launch_personal_complaint;
 
-    String[] title_array,time_array,status_array,room_array,contact_array,type_array,description_array,id_array;
+    String[] title_array,time_array,status_array,room_array,contact_array,type_array,description_array,id_array, hostel_array, posted_by_first_name_array, posted_by_last_name_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +158,9 @@ public class PersonalComplaints extends AppCompatActivity {
             type_array = new String[mainObject.length()];
             description_array = new String[mainObject.length()];
             id_array = new String[mainObject.length()];
-
+            hostel_array = new String[mainObject.length()];
+            posted_by_first_name_array = new String[mainObject.length()];
+            posted_by_last_name_array = new String[mainObject.length()];
 
             for (int i = 0; i < mainObject.length(); i++) {
                 JSONObject childJSONObject = mainObject.getJSONObject(i);
@@ -178,6 +180,9 @@ public class PersonalComplaints extends AppCompatActivity {
                 type_array[i]= childJSONObject.getString("tags");
                 description_array[i] = childJSONObject.getString("description");
                 id_array[i]=childJSONObject.getString("complaint_id");
+                hostel_array[i] = childJSONObject.getString("hostel");
+                posted_by_first_name_array[i] = childJSONObject.getString("first_name");
+                posted_by_last_name_array[i] = childJSONObject.getString("last_name");
 
 
                 //  time_array[i] = "time";
@@ -232,6 +237,9 @@ public class PersonalComplaints extends AppCompatActivity {
             final String complaint_status = status_array[i];
             final String complaint_description = description_array[i];
             final String complaint_id = id_array[i];
+            final String complaint_hostel = hostel_array[i];
+            final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+            final String complaint_posted_by_last_name = posted_by_last_name_array[i];
 
 
             title.setOnClickListener(new View.OnClickListener() {
@@ -246,6 +254,9 @@ public class PersonalComplaints extends AppCompatActivity {
                     PersonalComplaintDetails.setParticular_personal_complaint_status(complaint_status);
                     PersonalComplaintDetails.setParticular_personal_complaint_description(complaint_description);
                     PersonalComplaintDetails.setParticular_personal_complaint_id(complaint_id);
+                    PersonalComplaintDetails.setParticular_personal_complaint_hostel(complaint_hostel);
+                    PersonalComplaintDetails.setParticular_personal_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                    PersonalComplaintDetails.setParticular_personal_complaint_posted_by_last_name(complaint_posted_by_last_name);
 
                     Intent in = new Intent(PersonalComplaints.this, ParticularPersonalComplaint.class);
                     /*Bundle extras = new Bundle();

@@ -45,8 +45,8 @@
         android:paddingLeft="20dp"
         android:textStyle="italic"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/particular_personal_complaint_posted_by_answer"
-        android:layout_alignStart="@+id/particular_personal_complaint_posted_by_answer" />
+        android:layout_alignLeft="@+id/particular_personal_complaint_type_answer"
+        android:layout_alignStart="@+id/particular_personal_complaint_type_answer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,7 +70,7 @@
         android:paddingTop="5dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
-        android:layout_alignTop="@+id/particular_personal_complaint_posted_by"
+        android:layout_below="@+id/particular_personal_complaint_title"
         android:layout_toRightOf="@+id/particular_personal_complaint_type"
         android:layout_toEndOf="@+id/particular_personal_complaint_type" />
 
@@ -96,9 +96,9 @@
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_personal_complaint_posted_by_answer"
-        android:layout_alignLeft="@+id/particular_personal_complaint_hostel_answer"
-        android:layout_alignStart="@+id/particular_personal_complaint_hostel_answer" />
+        android:layout_below="@+id/particular_personal_complaint_posted_by"
+        android:layout_alignLeft="@+id/particular_personal_complaint_type_answer"
+        android:layout_alignStart="@+id/particular_personal_complaint_type_answer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -122,9 +122,9 @@
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_personal_complaint_room_no_answer"
-        android:layout_toRightOf="@+id/particular_personal_complaint_type"
-        android:layout_toEndOf="@+id/particular_personal_complaint_type" />
+        android:layout_below="@+id/particular_personal_complaint_room_no"
+        android:layout_alignLeft="@+id/particular_personal_complaint_type_answer"
+        android:layout_alignStart="@+id/particular_personal_complaint_type_answer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -142,13 +142,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/particular_personal_complaint_conatct_info_answer"
+        android:id="@+id/particular_personal_complaint_contact_info_answer"
         android:text="Answer"
         android:textSize="20dp"
         android:paddingTop="5dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_personal_complaint_hostel_answer"
+        android:layout_below="@+id/particular_personal_complaint_hostel"
         android:layout_alignLeft="@+id/particular_personal_complaint_type_answer"
         android:layout_alignStart="@+id/particular_personal_complaint_type_answer" />
 
@@ -174,7 +174,7 @@
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_personal_complaint_conatct_info_answer"
+        android:layout_below="@+id/particular_personal_complaint_contact_info"
         android:layout_toRightOf="@+id/particular_personal_complaint_type"
         android:layout_toEndOf="@+id/particular_personal_complaint_type" />
 
@@ -200,7 +200,7 @@
         android:textSize="20dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_personal_complaint_type_answer"
+        android:layout_below="@+id/particular_personal_complaint_type"
         android:layout_alignLeft="@+id/particular_personal_complaint_type_answer"
         android:layout_alignStart="@+id/particular_personal_complaint_type_answer" />
 

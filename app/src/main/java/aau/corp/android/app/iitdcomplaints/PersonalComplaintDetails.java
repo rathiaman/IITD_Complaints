@@ -8,7 +8,7 @@ public class PersonalComplaintDetails {
     
     public static String particular_personal_complaint_title, particular_personal_complaint_room_no, particular_personal_complaint_contact_info;
     public static String particular_personal_complaint_complaint_type, particular_personal_complaint_status, particular_personal_complaint_description, particular_personal_complaint_id;
-
+    public static String particular_personal_complaint_posted_by_first_name,particular_personal_complaint_posted_by_last_name, particular_personal_complaint_hostel;
     public static String getParticular_personal_complaint_title(){
         return particular_personal_complaint_title;
     }
@@ -71,4 +71,58 @@ public class PersonalComplaintDetails {
         particular_personal_complaint_id=name;
     }
 
+    public static String getParticular_personal_complaint_posted_by_first_name(){
+        return particular_personal_complaint_posted_by_first_name;
+    }
+
+    public static void setParticular_personal_complaint_posted_by_first_name(String name){
+        particular_personal_complaint_posted_by_first_name=name;
+    }
+
+    public static String getParticular_personal_complaint_posted_by_last_name(){
+        return particular_personal_complaint_posted_by_last_name;
+    }
+
+    public static void setParticular_personal_complaint_posted_by_last_name(String name){
+        particular_personal_complaint_posted_by_last_name=name;
+    }
+
+    public static String getParticular_personal_complaint_hostel(){
+        return particular_personal_complaint_hostel;
+    }
+
+    public static void setParticular_personal_complaint_hostel(String name){
+
+        String hostel_name_1 = "Aravali";
+        String hostel_name_2 = "Girnar";
+        String hostel_name_3 = "Himadri";
+        String hostel_name_4 = "Jwalamukhi";
+        String hostel_name_5 = "Kailash";
+        String hostel_name_6 = "Karakoram";
+        String hostel_name_7 = "Kumaon";
+        String hostel_name_8 = "Nilgiri";
+        String hostel_name_9 = "Satpura";
+        String hostel_name_10 = "Shivalik";
+        String hostel_name_11 = "Udaigiri";
+        String hostel_name_12 = "Vindhyachal";
+        String hostel_name_13 = "Zanskar";
+
+        if(Integer.parseInt(name) == 1){particular_personal_complaint_hostel = hostel_name_1;}
+        else if (Integer.parseInt(name) == 2){particular_personal_complaint_hostel = hostel_name_2;}
+        else if (Integer.parseInt(name) == 3){particular_personal_complaint_hostel = hostel_name_3;}
+        else if (Integer.parseInt(name) == 4){particular_personal_complaint_hostel = hostel_name_4;}
+        else if (Integer.parseInt(name) == 5){particular_personal_complaint_hostel = hostel_name_5;}
+        else if (Integer.parseInt(name) == 6){particular_personal_complaint_hostel = hostel_name_6;}
+        else if (Integer.parseInt(name) == 7){particular_personal_complaint_hostel = hostel_name_7;}
+        else if (Integer.parseInt(name) == 8){particular_personal_complaint_hostel = hostel_name_8;}
+        else if (Integer.parseInt(name) == 9){particular_personal_complaint_hostel = hostel_name_9;}
+        else if (Integer.parseInt(name) == 10){particular_personal_complaint_hostel = hostel_name_10;}
+        else if (Integer.parseInt(name) == 11){particular_personal_complaint_hostel = hostel_name_11;}
+        else if (Integer.parseInt(name) == 12){particular_personal_complaint_hostel = hostel_name_12;}
+        else if (Integer.parseInt(name) == 13){particular_personal_complaint_hostel = hostel_name_13;}
+        else {particular_personal_complaint_hostel = "none";}
+
+    }
+
 }
+
