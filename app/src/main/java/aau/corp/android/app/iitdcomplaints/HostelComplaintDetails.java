@@ -9,6 +9,8 @@ public class HostelComplaintDetails {
     public static String particular_hostel_complaint_title, particular_hostel_complaint_room_no, particular_hostel_complaint_contact_info;
     public static String particular_hostel_complaint_complaint_type, particular_hostel_complaint_status, particular_hostel_complaint_description, particular_hostel_complaint_id;
     public static String particular_hostel_complaint_posted_by_first_name,particular_hostel_complaint_posted_by_last_name, particular_hostel_complaint_hostel;
+    public static String particular_hostel_complaint_image;
+
     public static String getParticular_hostel_complaint_title(){
         return particular_hostel_complaint_title;
     }
@@ -123,6 +125,15 @@ public class HostelComplaintDetails {
         else {particular_hostel_complaint_hostel = "none";}
 
     }
+
+    public static String getParticular_hostel_complaint_image(){
+        return particular_hostel_complaint_image;
+    }
+
+    public static void setParticular_hostel_complaint_image(String name){
+        particular_hostel_complaint_image = name;
+    }
+
 
 }
 

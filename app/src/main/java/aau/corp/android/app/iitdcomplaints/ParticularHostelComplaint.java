@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +37,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
     private static EditText Hostel_comment;
     String complaint_id1,complaint_title1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
     String complaint_Hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
+    ImageView particular_hostel_complaint_image;
 
     String logged_in_user_first_name, logged_in_user_last_name;
 
@@ -44,6 +47,8 @@ public class ParticularHostelComplaint extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_particular_hostel_complaint);
+
+        show_image();
 
         Hostel_comment = (EditText)findViewById(R.id.particular_hostel_complaint_add_comment_answer);
         Hostel_post_comment = (Button)findViewById(R.id.particular_hostel_complaint_post_comment);
@@ -320,17 +325,37 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                 button_upvote.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       vote_now("1");
+                        vote_now("1");
                     }
                 });
             }
 
+/*
             if(has_voted==1)
             {
                 button_downvote.setVisibility(View.GONE);
                 button_upvote.setVisibility(View.GONE);
             }
+*/
 
+
+            if(has_voted == 1)
+            {
+
+               // button_upvote.setClickable(false);
+                button_upvote.setVisibility(View.VISIBLE);
+                button_upvote.setText("Upvoted");
+                button_upvote.setClickable(false);
+                Toast.makeText(ParticularHostelComplaint.this, "You have already UPVOTED this Complaint", Toast.LENGTH_SHORT).show();
+            }
+            if(has_voted == -1)
+            {
+                //button_downvote.setClickable(false);
+                button_downvote.setVisibility(View.VISIBLE);
+                button_downvote.setText("Downvoted");
+                button_downvote.setClickable(false);
+                Toast.makeText(ParticularHostelComplaint.this, "You have already DOWNVOTED this Complaint", Toast.LENGTH_SHORT).show();
+            }
 
 
 
@@ -503,5 +528,20 @@ public class ParticularHostelComplaint extends AppCompatActivity {
             course_assig_table.addView(row4);
         }
 
+    }
+
+    public void show_image() {
+
+        particular_hostel_complaint_image = (ImageView) findViewById(R.id.particular_hostel_complaint_image);
+
+        String address = HostelComplaintDetails.getParticular_hostel_complaint_image();
+        String adder1 = IPAddress.getName();
+
+        Toast.makeText(ParticularHostelComplaint.this, address + " ======", Toast.LENGTH_SHORT).show();
+        if (address.equals("no_image")) {
+            particular_hostel_complaint_image.setVisibility(View.GONE);
+        } else {
+            Picasso.with(this).load("http://" + adder1 + address).into(particular_hostel_complaint_image);
+        }
     }
 }

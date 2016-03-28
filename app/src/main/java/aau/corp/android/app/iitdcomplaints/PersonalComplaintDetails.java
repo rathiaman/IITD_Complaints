@@ -1,5 +1,7 @@
 package aau.corp.android.app.iitdcomplaints;
 
+import android.widget.ImageView;
+
 /**
  * Created by Aman Rathi on 27-03-2016.
  */
@@ -9,6 +11,8 @@ public class PersonalComplaintDetails {
     public static String particular_personal_complaint_title, particular_personal_complaint_room_no, particular_personal_complaint_contact_info;
     public static String particular_personal_complaint_complaint_type, particular_personal_complaint_status, particular_personal_complaint_description, particular_personal_complaint_id;
     public static String particular_personal_complaint_posted_by_first_name,particular_personal_complaint_posted_by_last_name, particular_personal_complaint_hostel;
+    public static String particular_personal_complaint_image;
+
     public static String getParticular_personal_complaint_title(){
         return particular_personal_complaint_title;
     }
@@ -123,6 +127,15 @@ public class PersonalComplaintDetails {
         else {particular_personal_complaint_hostel = "none";}
 
     }
+
+    public static String getParticular_personal_complaint_image(){
+        return particular_personal_complaint_image;
+    }
+
+    public static void setParticular_personal_complaint_image(String name){
+        particular_personal_complaint_image = name;
+    }
+
 
 }
 

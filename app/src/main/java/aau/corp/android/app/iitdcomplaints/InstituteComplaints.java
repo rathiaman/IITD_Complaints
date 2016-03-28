@@ -38,7 +38,7 @@ public class InstituteComplaints extends AppCompatActivity {
     Spinner search_list, filter_list;
     ArrayAdapter<CharSequence> search_list_adapter, filter_list_adapter;
     Button launch_institute_complaint;
-    String[] title_array,time_array,status_array,contact_array,type_array,description_array,id_array, hostel_array, posted_by_first_name_array, posted_by_last_name_array;
+    String[] title_array,time_array,status_array,contact_array,type_array,description_array,id_array, hostel_array, posted_by_first_name_array, posted_by_last_name_array, image_array;
 
     TableLayout all_institute_complaint_table,resolved_institute_complaint_table,unresolved_institute_complaint_table;
     TableLayout electricity_institute_complaint_table,plumber_institute_complaint_table,carpentry_institute_complaint_table;
@@ -350,6 +350,7 @@ public class InstituteComplaints extends AppCompatActivity {
             hostel_array = new String[mainObject.length()];
             posted_by_first_name_array = new String[mainObject.length()];
             posted_by_last_name_array = new String[mainObject.length()];
+            image_array = new String[mainObject.length()];
 
             for (int i = 0; i < mainObject.length(); i++) {
                 JSONObject childJSONObject = mainObject.getJSONObject(i);
@@ -371,6 +372,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 hostel_array[i] = childJSONObject.getString("hostel");
                 posted_by_first_name_array[i] = childJSONObject.getString("first_name");
                 posted_by_last_name_array[i] = childJSONObject.getString("last_name");
+                image_array[i] = childJSONObject.getString("image");
 
               
             }
@@ -427,6 +429,7 @@ public class InstituteComplaints extends AppCompatActivity {
             final String complaint_hostel = hostel_array[i];
             final String complaint_posted_by_first_name = posted_by_first_name_array[i];
             final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+            final String complaint_image = image_array[i];
 
 
             title.setOnClickListener(new View.OnClickListener() {
@@ -443,6 +446,7 @@ public class InstituteComplaints extends AppCompatActivity {
                     InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                     InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                     InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                    InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                     Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -611,7 +615,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
-
+                final String complaint_image = image_array[i];
 
                 title.setOnClickListener(new View.OnClickListener() {
 
@@ -627,6 +631,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -797,7 +802,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
-
+                final String complaint_image = image_array[i];
 
                 title.setOnClickListener(new View.OnClickListener() {
 
@@ -813,6 +818,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -983,6 +989,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -999,6 +1006,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -1167,6 +1175,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -1183,6 +1192,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -1349,6 +1359,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -1365,6 +1376,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -1532,6 +1544,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -1548,6 +1561,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -1717,6 +1731,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -1733,6 +1748,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 
@@ -1900,6 +1916,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 final String complaint_hostel = hostel_array[i];
                 final String complaint_posted_by_first_name = posted_by_first_name_array[i];
                 final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+                final String complaint_image = image_array[i];
 
 
                 title.setOnClickListener(new View.OnClickListener() {
@@ -1916,6 +1933,7 @@ public class InstituteComplaints extends AppCompatActivity {
                         InstituteComplaintDetails.setParticular_institute_complaint_hostel(complaint_hostel);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_first_name(complaint_posted_by_first_name);
                         InstituteComplaintDetails.setParticular_institute_complaint_posted_by_last_name(complaint_posted_by_last_name);
+                        InstituteComplaintDetails.setParticular_institute_complaint_image(complaint_image);
 
                         Intent in = new Intent(InstituteComplaints.this, ParticularInstituteComplaint.class);
 

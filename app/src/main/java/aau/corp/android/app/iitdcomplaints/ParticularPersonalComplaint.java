@@ -1,10 +1,12 @@
 package aau.corp.android.app.iitdcomplaints;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +35,8 @@ import java.util.LinkedHashMap;
 public class ParticularPersonalComplaint extends AppCompatActivity {
 
 
-    Button personal_post_comment;
+    Button personal_post_comment, mark_as_resolved;
+    ImageView particular_personal_complaint_image;
     private static EditText personal_comment;
     String complaint_id1,complaint_title1,complaint_roomno1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
     String complaint_hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
@@ -45,10 +50,13 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_particular_personal_complaint);
 
+        mark_as_resolved_button();
         personal_comment = (EditText)findViewById(R.id.particular_personal_complaint_add_comment_answer);
         personal_post_comment = (Button)findViewById(R.id.particular_personal_complaint_post_comment);
 
         Bundle extras = getIntent().getExtras();
+
+        show_image();
 
         ///////////////////////////////////
         // Extracting from intent bundle
@@ -381,7 +389,48 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
     }
 
+    public void show_image() {
 
+        particular_personal_complaint_image = (ImageView) findViewById(R.id.particular_personal_complaint_image);
 
+        String address = PersonalComplaintDetails.getParticular_personal_complaint_image();
+        String adder1 = IPAddress.getName();
+
+        if (address.equals("no_image")) {
+            particular_personal_complaint_image.setVisibility(View.GONE);
+        } else {
+            Picasso.with(this).load("http://" + adder1 + address).into(particular_personal_complaint_image);
+        }
+    }
+
+    public void mark_as_resolved_button(){
+        mark_as_resolved = (Button) findViewById(R.id.particular_personal_complaint_mark_as_resolved);
+
+        mark_as_resolved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calls the alert dialogue box
+                AlertDialog.Builder submit_alert = new AlertDialog.Builder(ParticularPersonalComplaint.this);
+                submit_alert.setMessage("").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // calls the function which send the request to the server
+                        //sendRequest();
+
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {    // If no is pressed, you are taken back to the login screen
+                        dialog.cancel();
+                    }
+                });
+
+                AlertDialog alert = submit_alert.create();
+                alert.setTitle("Are you sure you want to mark this complaint as RESOLVED  !!!");
+                alert.show();
+
+            }
+        });
+    }
 
 }

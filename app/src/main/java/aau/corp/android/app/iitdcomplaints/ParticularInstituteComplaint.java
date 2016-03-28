@@ -12,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +35,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
 
     Button institute_post_comment,button_upvote,button_downvote;
     private static EditText institute_comment;
+    ImageView particular_institute_complaint_image;
     String complaint_id1,complaint_title1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
     String complaint_hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
 
@@ -52,6 +55,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
         button_downvote.setVisibility(View.GONE);
         button_upvote.setVisibility(View.GONE);
 
+        show_image();
       
         ///////////////////////////////////
         // getting from institute complaint details
@@ -321,12 +325,31 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
                 });
             }
 
+/*
             if(has_voted==1)
             {
                 button_downvote.setVisibility(View.GONE);
                 button_upvote.setVisibility(View.GONE);
             }
+*/
 
+            if(has_voted == 1)
+            {
+
+                // button_upvote.setClickable(false);
+                button_upvote.setVisibility(View.VISIBLE);
+                button_upvote.setText("Upvoted");
+                button_upvote.setClickable(false);
+                Toast.makeText(ParticularInstituteComplaint.this, "You have already UPVOTED this Complaint", Toast.LENGTH_SHORT).show();
+            }
+            if(has_voted == -1)
+            {
+                //button_downvote.setClickable(false);
+                button_downvote.setVisibility(View.VISIBLE);
+                button_downvote.setText("Downvoted");
+                button_downvote.setClickable(false);
+                Toast.makeText(ParticularInstituteComplaint.this, "You have already DOWNVOTED this Complaint", Toast.LENGTH_SHORT).show();
+            }
 
 
 
@@ -499,5 +522,19 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
             course_assig_table.addView(row4);
         }
 
+    }
+
+    public void show_image() {
+
+        particular_institute_complaint_image = (ImageView) findViewById(R.id.particular_institute_complaint_image);
+
+        String address = InstituteComplaintDetails.getParticular_institute_complaint_image();
+        String adder1 = IPAddress.getName();
+        Toast.makeText(ParticularInstituteComplaint.this, address + " ======", Toast.LENGTH_SHORT).show();
+        if (address.equals("no_image")) {
+            particular_institute_complaint_image.setVisibility(View.GONE);
+        } else {
+            Picasso.with(this).load("http://" + adder1 + address).into(particular_institute_complaint_image);
+        }
     }
 }
