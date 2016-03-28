@@ -55,7 +55,7 @@
     </Spinner>
 
             <TableLayout
-                android:id="@+id/complaint_institute_table"
+                android:id="@+id/all_institute_complaint_table"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/spinner_search_list"
@@ -65,6 +65,102 @@
 
 
             </TableLayout>
+
+            <TableLayout
+                android:id="@+id/resolved_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+            <TableLayout
+                android:id="@+id/unresolved_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/electricity_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/plumber_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/carpentry_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/internet_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/sweeper_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/other_institute_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
 
         </RelativeLayout>
     </ScrollView>

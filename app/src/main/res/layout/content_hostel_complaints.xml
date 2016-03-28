@@ -55,7 +55,7 @@
     </Spinner>
 
     <TableLayout
-        android:id="@+id/complaint_hostel_table"
+        android:id="@+id/all_hostel_complaint_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/spinner_search_list"
@@ -66,7 +66,105 @@
 
     </TableLayout>
 
-</RelativeLayout>
+
+            <TableLayout
+                android:id="@+id/resolved_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+            <TableLayout
+                android:id="@+id/unresolved_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/electricity_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/plumber_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/carpentry_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/internet_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/sweeper_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/other_hostel_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_search_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+
+
+        </RelativeLayout>
     </ScrollView>
 
 

@@ -1,17 +1,17 @@
 package aau.corp.android.app.iitdcomplaints;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,7 +30,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 
 public class HostelComplaints extends AppCompatActivity {
@@ -38,13 +37,44 @@ public class HostelComplaints extends AppCompatActivity {
     Spinner search_list, filter_list;
     ArrayAdapter<CharSequence> search_list_adapter, filter_list_adapter;
     Button launch_hostel_complaint;
-    String[] title_array,time_array,status_array,posted_array;
+
+
+    String[] title_array,time_array,status_array,contact_array,type_array,description_array,id_array, hostel_array, posted_by_first_name_array, posted_by_last_name_array;
+
+    TableLayout all_hostel_complaint_table,resolved_hostel_complaint_table,unresolved_hostel_complaint_table;
+    TableLayout electricity_hostel_complaint_table,plumber_hostel_complaint_table,carpentry_hostel_complaint_table;
+    TableLayout internet_hostel_complaint_table,sweeper_hostel_complaint_table,other_hostel_complaint_table;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostel_complaints);
         onButtonClickListener_Launch_Hostel();
+
+        unresolved_hostel_complaint_table = (TableLayout) findViewById(R.id.unresolved_hostel_complaint_table);
+        resolved_hostel_complaint_table =(TableLayout) findViewById(R.id.resolved_hostel_complaint_table);
+        all_hostel_complaint_table = (TableLayout) findViewById(R.id.all_hostel_complaint_table);
+        electricity_hostel_complaint_table=(TableLayout)findViewById(R.id.electricity_hostel_complaint_table);
+        plumber_hostel_complaint_table = (TableLayout)findViewById(R.id.plumber_hostel_complaint_table);
+        carpentry_hostel_complaint_table = (TableLayout) findViewById(R.id.carpentry_hostel_complaint_table);
+        internet_hostel_complaint_table = (TableLayout)findViewById(R.id.internet_hostel_complaint_table);
+        sweeper_hostel_complaint_table = (TableLayout)findViewById(R.id.sweeper_hostel_complaint_table);
+        other_hostel_complaint_table = (TableLayout)findViewById(R.id.other_hostel_complaint_table);
+
+
+        unresolved_hostel_complaint_table.setVisibility(View.GONE);
+        resolved_hostel_complaint_table.setVisibility(View.GONE);
+        all_hostel_complaint_table.setVisibility(View.VISIBLE);
+        electricity_hostel_complaint_table.setVisibility(View.GONE);
+        plumber_hostel_complaint_table.setVisibility(View.GONE);
+        carpentry_hostel_complaint_table.setVisibility(View.GONE);
+        internet_hostel_complaint_table.setVisibility(View.GONE);
+        sweeper_hostel_complaint_table.setVisibility(View.GONE);
+        other_hostel_complaint_table.setVisibility(View.GONE);
+
+
 
         search_list = (Spinner) findViewById(R.id.spinner_search_list);
         search_list_adapter = ArrayAdapter.createFromResource(this, R.array.search_list, android.R.layout.simple_spinner_item);
@@ -55,6 +85,118 @@ public class HostelComplaints extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " --", Toast.LENGTH_LONG).show();
+
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                if(selectedItem.equals("Electricity"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+
+                }
+
+                else if(selectedItem.equals("Plumber"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+                }
+
+                else if (selectedItem.equals("Carpentry"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+                }
+
+                else if (selectedItem.equals("Internet Issues"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+                }
+
+                else if (selectedItem.equals("Sweeper"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+                }
+
+                else if (selectedItem.equals("Others"))
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.VISIBLE);
+
+                }
+
+                else
+                {
+
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+                }
+
+
+
+
             }
 
             @Override
@@ -73,6 +215,60 @@ public class HostelComplaints extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                if(selectedItem.equals("Show Resolved Only"))
+                {
+
+                    Toast.makeText(HostelComplaints.this, "Show Resolved Only", Toast.LENGTH_SHORT).show();
+
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+
+                }
+
+                else if(selectedItem.equals("Show Unresolved Only"))
+                {
+
+                    all_hostel_complaint_table.setVisibility(View.GONE);
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    unresolved_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+
+                }
+
+                else
+                {
+
+                    resolved_hostel_complaint_table.setVisibility(View.GONE);
+                    unresolved_hostel_complaint_table.setVisibility(View.GONE);
+                    all_hostel_complaint_table.setVisibility(View.VISIBLE);
+                    electricity_hostel_complaint_table.setVisibility(View.GONE);
+                    plumber_hostel_complaint_table.setVisibility(View.GONE);
+                    carpentry_hostel_complaint_table.setVisibility(View.GONE);
+                    internet_hostel_complaint_table.setVisibility(View.GONE);
+                    sweeper_hostel_complaint_table.setVisibility(View.GONE);
+                    other_hostel_complaint_table.setVisibility(View.GONE);
+
+
+                }
+
+
+
             }
 
             @Override
@@ -80,8 +276,13 @@ public class HostelComplaints extends AppCompatActivity {
 
             }
         });
+
         display_hosteldata();
+
+
     }
+
+
 
     public void onButtonClickListener_Launch_Hostel(){
         launch_hostel_complaint = (Button) findViewById(R.id.launch_complaint_hostel);
@@ -95,13 +296,14 @@ public class HostelComplaints extends AppCompatActivity {
         });
     }
 
+
     public void display_hosteldata()
     {
 
         String adder1 = IPAddress.getName();
 
-        final String user_id = Profile_data.getuserid();
-        final String hostel_id = Profile_data.getHostel();
+        int hostel = HostelDetails.get_Particular_hostel_id(Profile_data.getHostel());
+        final String hostel_id = String.valueOf(hostel);
 
         String url;
         url = "http://" + adder1 + "/complaint_system/show_complaints/show_hostel_complaints.php";
@@ -111,7 +313,7 @@ public class HostelComplaints extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.e("hello1", response.toString());
-                        Toast.makeText(HostelComplaints.this, "reponse", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HostelComplaints.this, "reponse--------"+ hostel_id, Toast.LENGTH_SHORT).show();
                         Toast.makeText(HostelComplaints.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
@@ -136,6 +338,7 @@ public class HostelComplaints extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(request);
     }
 
+
     public void getresponse(String response)
     {
 
@@ -150,7 +353,13 @@ public class HostelComplaints extends AppCompatActivity {
             title_array = new String[mainObject.length()];
             status_array = new String[mainObject.length()];
             time_array = new String[mainObject.length()];
-            posted_array = new String[mainObject.length()];
+            contact_array = new String[mainObject.length()];
+            type_array = new String[mainObject.length()];
+            description_array = new String[mainObject.length()];
+            id_array = new String[mainObject.length()];
+            hostel_array = new String[mainObject.length()];
+            posted_by_first_name_array = new String[mainObject.length()];
+            posted_by_last_name_array = new String[mainObject.length()];
 
             for (int i = 0; i < mainObject.length(); i++) {
                 JSONObject childJSONObject = mainObject.getJSONObject(i);
@@ -165,7 +374,13 @@ public class HostelComplaints extends AppCompatActivity {
                     status_array[i] = "resolved";
                 }
                 time_array[i] = childJSONObject.getString("time");
-                posted_array[i] = childJSONObject.getString("first_name");
+               contact_array[i]=childJSONObject.getString("contact_info");
+                type_array[i]= childJSONObject.getString("tags");
+                description_array[i] = childJSONObject.getString("description");
+                id_array[i]=childJSONObject.getString("complaint_id");
+                hostel_array[i] = childJSONObject.getString("hostel");
+                posted_by_first_name_array[i] = childJSONObject.getString("first_name");
+                posted_by_last_name_array[i] = childJSONObject.getString("last_name");
 
 
                 //  time_array[i] = "time";
@@ -179,12 +394,13 @@ public class HostelComplaints extends AppCompatActivity {
 
     }
 
-    public void create_complaint_table()
-    {
 
-        TableLayout course_assig_table = (TableLayout) findViewById(R.id.complaint_hostel_table);
-        course_assig_table.setColumnShrinkable(2, true);
-        course_assig_table.setStretchAllColumns(true);
+    
+    public void create_complaint_table() {
+
+        TableLayout all_hostel_complaint_table = (TableLayout) findViewById(R.id.all_hostel_complaint_table);
+        all_hostel_complaint_table.setColumnShrinkable(2, true);
+        all_hostel_complaint_table.setStretchAllColumns(true);
 
 
         for (int i = 0; i < title_array.length; i++) {
@@ -213,6 +429,40 @@ public class HostelComplaints extends AppCompatActivity {
             title.setTypeface(Typeface.DEFAULT);
             title.setTextColor(Color.BLUE);
             title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            final String complaint_title = title_array[i];
+            final String contact_info = contact_array[i];
+            final String complaint_type = type_array[i];
+            final String complaint_status = status_array[i];
+            final String complaint_description = description_array[i];
+            final String complaint_id = id_array[i];
+            final String complaint_hostel = hostel_array[i];
+            final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+            final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+            title.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                    HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                    HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                    HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                    HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                    HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                    HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                    HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                    HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                    Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                    startActivity(in);
+
+                }
+            });
+
             sno.setTextSize(15);
             sno.setTypeface(null, Typeface.BOLD);
             //add textview to the row
@@ -223,10 +473,8 @@ public class HostelComplaints extends AppCompatActivity {
             row1.addView(title);
             row1.setGravity(Gravity.CENTER);
             //set the layoout parameters for the row
-            course_assig_table.addView(row1);
-
-
-//////////////////////////////////////
+            all_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
 
             TableRow row5 = new TableRow(this);
             TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -241,17 +489,18 @@ public class HostelComplaints extends AppCompatActivity {
             //TextView status = new TextView(this);
             TextView posted = new TextView(this);
 
-            // status.setText(status_array[i]);
+            // status.setText(posted_by_array[i]);
             blank5.setText("Posted By:");
-            posted.setText(time_array[i]);
+            posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
             // status.setTextSize(15);
             posted.setTextSize(15);
             row5.addView(blank5);
             row5.addView(posted);
             row5.setLayoutParams(lp5);
             row5.setGravity(Gravity.CENTER);
-            course_assig_table.addView(row5);
-///////////////////////////////////////////////////////
+            all_hostel_complaint_table.addView(row5);
+
+            ////////////////////////////
 
             TableRow row2 = new TableRow(this);
             TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -277,9 +526,7 @@ public class HostelComplaints extends AppCompatActivity {
             // row3.addView(time);
             row2.setLayoutParams(lp2);
             row2.setGravity(Gravity.CENTER);
-            course_assig_table.addView(row2);
-
-
+            all_hostel_complaint_table.addView(row2);
 
 
 ///////////////////////////////////////////////////////
@@ -305,12 +552,9 @@ public class HostelComplaints extends AppCompatActivity {
             row3.addView(time);
             row3.setLayoutParams(lp3);
             row3.setGravity(Gravity.CENTER);
-            course_assig_table.addView(row3);
-
+            all_hostel_complaint_table.addView(row3);
 /////////////////////////////////////
             //entering blank row
-
-
 
             TableRow row4 = new TableRow(this);
             TextView blank_1 = new TextView(this);
@@ -323,10 +567,1467 @@ public class HostelComplaints extends AppCompatActivity {
             row4.addView(blank_2);
             row4.addView(blank_3);
             row3.setLayoutParams(lp3);
-            course_assig_table.addView(row4);
+            all_hostel_complaint_table.addView(row4);
+        }
+
+
+//////////////////////////////////////////////
+///////show resolved
+
+
+        TableLayout resolved_hostel_complaint_table = (TableLayout) findViewById(R.id.resolved_hostel_complaint_table);
+        resolved_hostel_complaint_table.setColumnShrinkable(2, true);
+        resolved_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (status_array[i] == "resolved") {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                resolved_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                resolved_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                resolved_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                resolved_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                resolved_hostel_complaint_table.addView(row4);
+            } else {
+            }
+
+        }
+
+
+/////////////////////////////////////////////////////
+
+///unresolved complaint table
+
+
+        TableLayout unresolved_hostel_complaint_table = (TableLayout) findViewById(R.id.unresolved_hostel_complaint_table);
+        unresolved_hostel_complaint_table.setColumnShrinkable(2, true);
+        unresolved_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (status_array[i] == "unresolved") {
+
+
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                unresolved_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                unresolved_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                unresolved_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                unresolved_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                unresolved_hostel_complaint_table.addView(row4);
+            } else {
+            }
+
+        }
+
+
+///////////////////////////////////////////////
+        ////////////////electricity complaints
+
+
+        TableLayout electricity_hostel_complaint_table = (TableLayout) findViewById(R.id.electricity_hostel_complaint_table);
+        electricity_hostel_complaint_table.setColumnShrinkable(2, true);
+        electricity_hostel_complaint_table.setStretchAllColumns(true);
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 1) {
+
+
+
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                electricity_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                electricity_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                electricity_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                electricity_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                electricity_hostel_complaint_table.addView(row4);
+            } else {}
+
+        }
+
+
+
+////////////////////////////////
+
+        ////////////plumber table
+
+        TableLayout plumber_hostel_complaint_table = (TableLayout) findViewById(R.id.plumber_hostel_complaint_table);
+        plumber_hostel_complaint_table.setColumnShrinkable(2, true);
+        plumber_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 2) {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                plumber_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                plumber_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                plumber_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                plumber_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                plumber_hostel_complaint_table.addView(row4);
+            } else {}
+
+        }
+
+
+//////////////////////////////////
+
+        ///////////carpentry
+
+        TableLayout carpentry_hostel_complaint_table = (TableLayout) findViewById(R.id.carpentry_hostel_complaint_table);
+        carpentry_hostel_complaint_table.setColumnShrinkable(2, true);
+        carpentry_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 3) {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                carpentry_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                carpentry_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                carpentry_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                carpentry_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                carpentry_hostel_complaint_table.addView(row4);
+            } else {}
+
+        }
+
+
+
+
+////////////////////////////////////////////////////////////////////
+        ///////////////internet
+
+        TableLayout internet_hostel_complaint_table = (TableLayout) findViewById(R.id.internet_hostel_complaint_table);
+        internet_hostel_complaint_table.setColumnShrinkable(2, true);
+        internet_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 4) {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                internet_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                internet_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                internet_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                internet_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                internet_hostel_complaint_table.addView(row4);
+            } else {}
+
+        }
+
+
+
+
+///////////////////////////////////////////////////////////////////////
+
+        //////////////////sweeper
+
+
+        TableLayout sweeper_hostel_complaint_table = (TableLayout) findViewById(R.id.sweeper_hostel_complaint_table);
+        sweeper_hostel_complaint_table.setColumnShrinkable(2, true);
+        sweeper_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 5) {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                sweeper_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                sweeper_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                sweeper_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                sweeper_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                sweeper_hostel_complaint_table.addView(row4);
+            } else {}
+
+        }
+
+
+
+
+///////////////////////////////////////////////////////////////
+
+        //////////////////others
+
+        TableLayout other_hostel_complaint_table = (TableLayout) findViewById(R.id.other_hostel_complaint_table);
+        other_hostel_complaint_table.setColumnShrinkable(2, true);
+        other_hostel_complaint_table.setStretchAllColumns(true);
+
+
+        for (int i = 0; i < title_array.length; i++) {
+            //Creating new tablerows and textviews
+            if (Integer.parseInt(type_array[i]) == 6) {
+                TableRow row1 = new TableRow(this);
+                //layout parameters
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin = 0;
+                int topMargin = 0;
+                int rightMargin = 0;
+                int bottomMargin = 0;
+                lp.setMargins(leftMargin, topMargin, rightMargin, bottomMargin);
+                //making textview
+                TextView sno = new TextView(this);
+                TextView title = new TextView(this);
+                //setting the values of textview
+                sno.setText(String.valueOf(i + 1) + ". ");
+                title.setText(title_array[i]);
+                //for giving span to the name
+                TableRow.LayoutParams trParam = new TableRow.LayoutParams();
+                trParam.column = 1;
+                //layout parametrrs for the name
+                title.setLayoutParams(trParam);
+                title.setTextSize(15);
+                title.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+                title.setTypeface(Typeface.DEFAULT);
+                title.setTextColor(Color.BLUE);
+                title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                final String complaint_title = title_array[i];
+                final String contact_info = contact_array[i];
+                final String complaint_type = type_array[i];
+                final String complaint_status = status_array[i];
+                final String complaint_description = description_array[i];
+                final String complaint_id = id_array[i];
+                final String complaint_hostel = hostel_array[i];
+                final String complaint_posted_by_first_name = posted_by_first_name_array[i];
+                final String complaint_posted_by_last_name = posted_by_last_name_array[i];
+
+
+                title.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        HostelComplaintDetails.setparticular_hostel_complaint_title(complaint_title);
+                        HostelComplaintDetails.setParticular_hostel_complaint_contact_info(contact_info);
+                        HostelComplaintDetails.setParticular_hostel_complaint_complaint_type(complaint_type);
+                        HostelComplaintDetails.setParticular_hostel_complaint_status(complaint_status);
+                        HostelComplaintDetails.setParticular_hostel_complaint_description(complaint_description);
+                        HostelComplaintDetails.setParticular_hostel_complaint_id(complaint_id);
+                        HostelComplaintDetails.setParticular_hostel_complaint_hostel(complaint_hostel);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_first_name(complaint_posted_by_first_name);
+                        HostelComplaintDetails.setParticular_hostel_complaint_posted_by_last_name(complaint_posted_by_last_name);
+
+                        Intent in = new Intent(HostelComplaints.this, ParticularHostelComplaint.class);
+
+
+                        startActivity(in);
+
+                    }
+                });
+                sno.setTextSize(15);
+                sno.setTypeface(null, Typeface.BOLD);
+                //add textview to the row
+
+                //finished with setting layout
+
+                row1.addView(sno);
+                row1.addView(title);
+                row1.setGravity(Gravity.CENTER);
+                //set the layoout parameters for the row
+                other_hostel_complaint_table.addView(row1);
+///////////////////////////////////////////////////////
+
+                TableRow row5 = new TableRow(this);
+                TableRow.LayoutParams lp5 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin5 = 0;
+                int topMargin5 = 0;
+                int rightMargin5 = 0;
+                int bottomMargin5 = 0;
+                lp5.setMargins(leftMargin5, topMargin5, rightMargin5, bottomMargin5);
+                //making textview
+
+                TextView blank5 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView posted = new TextView(this);
+
+                // status.setText(posted_by_array[i]);
+                blank5.setText("Posted By:");
+                posted.setText(posted_by_first_name_array[i] + " " +posted_by_last_name_array[i]);
+                // status.setTextSize(15);
+                posted.setTextSize(15);
+                row5.addView(blank5);
+                row5.addView(posted);
+                row5.setLayoutParams(lp5);
+                row5.setGravity(Gravity.CENTER);
+                other_hostel_complaint_table.addView(row5);
+
+                ////////////////////////////
+
+                TableRow row2 = new TableRow(this);
+                TableRow.LayoutParams lp2 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin2 = 0;
+                int topMargin2 = 0;
+                int rightMargin2 = 0;
+                int bottomMargin2 = 0;
+                lp2.setMargins(leftMargin2, topMargin2, rightMargin2, bottomMargin2);
+                //making textview
+
+                TextView blank2 = new TextView(this);
+                TextView status = new TextView(this);
+                //TextView time = new TextView(this);
+
+                status.setText(status_array[i]);
+                blank2.setText("Status:");
+                // time.setText(time_array[i]);
+                status.setTextSize(15);
+                // time.setTextSize(15);
+                row2.addView(blank2);
+                row2.addView(status);
+
+                // row3.addView(time);
+                row2.setLayoutParams(lp2);
+                row2.setGravity(Gravity.CENTER);
+                other_hostel_complaint_table.addView(row2);
+
+
+///////////////////////////////////////////////////////
+                TableRow row3 = new TableRow(this);
+                TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                int leftMargin3 = 0;
+                int topMargin3 = 0;
+                int rightMargin3 = 0;
+                int bottomMargin3 = 0;
+                lp3.setMargins(leftMargin3, topMargin3, rightMargin3, bottomMargin3);
+                //making textview
+
+                TextView blank3 = new TextView(this);
+                //TextView status = new TextView(this);
+                TextView time = new TextView(this);
+
+                // status.setText(status_array[i]);
+                blank3.setText("Posted At:");
+                time.setText(time_array[i]);
+                // status.setTextSize(15);
+                time.setTextSize(15);
+                row3.addView(blank3);
+                row3.addView(time);
+                row3.setLayoutParams(lp3);
+                row3.setGravity(Gravity.CENTER);
+                other_hostel_complaint_table.addView(row3);
+/////////////////////////////////////
+                //entering blank row
+
+                TableRow row4 = new TableRow(this);
+                TextView blank_1 = new TextView(this);
+                TextView blank_2 = new TextView(this);
+                TextView blank_3 = new TextView(this);
+                blank_1.setText("  ");
+                blank_2.setText("  ");
+                blank_3.setText("  ");
+                row4.addView(blank_1);
+                row4.addView(blank_2);
+                row4.addView(blank_3);
+                row3.setLayoutParams(lp3);
+                other_hostel_complaint_table.addView(row4);
+            } else {}
+
         }
 
     }
+
+
 
 
 

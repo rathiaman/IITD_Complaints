@@ -10,6 +10,17 @@
     android:background="#FF6A00"
     tools:context="aau.corp.android.app.iitdcomplaints.ParticularHostelComplaint">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,32 +71,7 @@
         android:layout_toRightOf="@+id/particular_hostel_complaint_type"
         android:layout_toEndOf="@+id/particular_hostel_complaint_type" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Room No"
-        android:id="@+id/particular_hostel_complaint_room_no"
-        android:textSize="25dp"
-        android:layout_below="@+id/particular_hostel_complaint_posted_by"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/particular_hostel_complaint_room_no_answer"
-        android:text="Answer"
-        android:textSize="25dp"
-        android:paddingLeft="20dp"
-        android:textStyle="italic"
-        android:layout_below="@+id/particular_hostel_complaint_posted_by_answer"
-        android:layout_alignLeft="@+id/particular_hostel_complaint_posted_by_answer"
-        android:layout_alignStart="@+id/particular_hostel_complaint_posted_by_answer" />
-
-    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,9 +79,9 @@
         android:text="Contact Info"
         android:id="@+id/particular_hostel_complaint_contact_info"
         android:textSize="25dp"
-        android:layout_below="@+id/particular_hostel_complaint_room_no"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/particular_hostel_complaint_posted_by" />
 
 
     <TextView
@@ -107,9 +93,9 @@
         android:textSize="25dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
-        android:layout_below="@+id/particular_hostel_complaint_room_no_answer"
         android:layout_alignLeft="@+id/particular_hostel_complaint_type_answer"
-        android:layout_alignStart="@+id/particular_hostel_complaint_type_answer" />
+        android:layout_alignStart="@+id/particular_hostel_complaint_type_answer"
+        android:layout_below="@+id/particular_hostel_complaint_posted_by_answer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -240,6 +226,88 @@
         android:textSize="20dp"
         android:textStyle="italic" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Enter a new Comment"
+        android:id="@+id/particular_complaint_add_comment"
+        android:layout_below="@+id/particular_hostel_complaint_description_answer"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="20dp"
+        android:textSize="25dp" />
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/particular_hostel_complaint_add_comment_answer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/particular_complaint_add_comment"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post"
+        android:id="@+id/particular_hostel_complaint_post_comment"
+        android:background="#c81126"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:layout_above="@+id/particular_personal_complaint_add_comment_answer"
+        android:layout_alignTop="@+id/particular_complaint_add_comment"
+        android:layout_toRightOf="@+id/particular_complaint_add_comment" />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/particular_hostel_complaint_comment_table"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button_upvote">
+
+        </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UPVOTE"
+        android:background="#c81126"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:id="@+id/button_upvote"
+        android:layout_below="@+id/particular_hostel_complaint_add_comment_answer"
+        android:layout_toRightOf="@+id/particular_hostel_complaint_status"
+        android:layout_toEndOf="@+id/particular_hostel_complaint_status" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOWNVOTE"
+        android:background="#c81126"
+        android:textColor="#FFFFFF"
+        android:textSize="12dp"
+        android:id="@+id/button_downvote"
+        android:layout_below="@+id/particular_hostel_complaint_add_comment_answer"
+        android:layout_alignLeft="@+id/particular_hostel_complaint_downvotes_answer"
+        android:layout_alignStart="@+id/particular_hostel_complaint_downvotes_answer" />
+
+            </RelativeLayout>
+    </ScrollView>
 
 
 </RelativeLayout>
