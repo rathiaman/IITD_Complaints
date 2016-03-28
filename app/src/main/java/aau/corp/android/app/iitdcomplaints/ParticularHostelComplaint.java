@@ -1,10 +1,12 @@
 package aau.corp.android.app.iitdcomplaints;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +35,7 @@ import java.util.LinkedHashMap;
 public class ParticularHostelComplaint extends AppCompatActivity {
 
 
-    Button Hostel_post_comment,button_upvote,button_downvote;
+    Button Hostel_post_comment,button_upvote,button_downvote, mark_as_resolved;
     private static EditText Hostel_comment;
     String complaint_id1,complaint_title1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
     String complaint_Hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
@@ -48,6 +50,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_particular_hostel_complaint);
 
+        mark_as_resolved_button();
         show_image();
 
         Hostel_comment = (EditText)findViewById(R.id.particular_hostel_complaint_add_comment_answer);
@@ -540,4 +543,83 @@ public class ParticularHostelComplaint extends AppCompatActivity {
             Picasso.with(this).load("http://" + adder1 + address).into(particular_hostel_complaint_image);
         }
     }
+
+    public void mark_as_resolved_button() {
+        mark_as_resolved = (Button) findViewById(R.id.particular_hostel_complaint_mark_as_resolved);
+
+        if (PersonalComplaintDetails.getParticular_personal_complaint_status().equals("resolved")){
+            mark_as_resolved.setVisibility(View.GONE);
+        }
+
+        else {
+            if (Profile_data.getAccount_type().equals("Warden")){
+
+                mark_as_resolved.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // calls the alert dialogue box
+                        AlertDialog.Builder submit_alert = new AlertDialog.Builder(ParticularHostelComplaint.this);
+                        submit_alert.setMessage("").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // calls the function which send the request to the server
+                                marke_resolve_request();
+                                mark_as_resolved.setVisibility(View.GONE);
+                                TextView complaint_status = (TextView) findViewById(R.id.particular_hostel_complaint_status_answer);
+                                complaint_status.setText("Resolved");
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {    // If no is pressed, you are taken back to the login screen
+                                dialog.cancel();
+                            }
+                        });
+
+                        AlertDialog alert = submit_alert.create();
+                        alert.setTitle("Are you sure you want to mark this complaint as RESOLVED  !!!");
+                        alert.show();
+
+                    }
+                });
+            }
+
+            else {
+                mark_as_resolved.setVisibility(View.GONE);
+            }
+
+        }
+
+    }
+    private void marke_resolve_request() {
+
+        String adder1 = IPAddress.getName();
+        String url = "http://" + adder1 + "/complaint_system/tools/change_status.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ParticularHostelComplaint.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            //used to store data and sent the string request
+            @Override
+            protected LinkedHashMap<String, String> getParams() {
+                LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+                data.put("complaint_id", complaint_id1);
+                data.put("complaint_type","1");
+
+                return data;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(request);
+    }
+
 }

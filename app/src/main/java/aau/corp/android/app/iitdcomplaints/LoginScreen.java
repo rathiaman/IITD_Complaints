@@ -1,5 +1,6 @@
 package aau.corp.android.app.iitdcomplaints;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -140,6 +141,10 @@ public class LoginScreen extends AppCompatActivity {
     //function defined for sending the string request
     ///////////////////////////////////
     private void sendRequest() {
+
+        final ProgressDialog messageDialog = new ProgressDialog(this);
+        messageDialog.setMessage("Logging in");
+        messageDialog.show();
 
         ip_address_text = (EditText) findViewById(R.id.edit_text_IPAddress);
         IPAddress.setName(ip_address_text.getText().toString());

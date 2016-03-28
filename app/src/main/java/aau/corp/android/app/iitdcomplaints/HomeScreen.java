@@ -5,14 +5,22 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -181,12 +189,57 @@ public class HomeScreen extends AppCompatActivity {
             startActivity(in);
 
            }
-       /* if (id == R.id.sign_out) {
+
+
+
+        if (id == R.id.sign_out) {
             signout_method();
         }
-       */ return false;
+        return false;
     }
 
+    public void signout_method(){
+        //url for grades
+        String adder1 = IPAddress.getName();
+        String url="http://" + adder1 + "/user_action/signout_action.php";
+        //String url="http://10.192.18.219:8000//courses/course.json/"+course_code+"/grades";
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try{
+                            Intent sign_out_intent = new Intent(getApplicationContext(), LoginScreen.class);
+                            startActivity(sign_out_intent);
+                        }
+                        catch(Exception e){
+                            Log.e("u1", e.toString());
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("u2" , error.toString());
+                        Toast.makeText(HomeScreen.this, "Network Error", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            //used to store data and sent the string request
+            @Override
+            protected LinkedHashMap<String, String> getParams() {
+                LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+                data.put("user_id", "anything");
+                return data;
+            }
+        };
+
+        // Add a request (in this example, called stringRequest) to your RequestQueue.
+        MySingleton.getInstance(this).addToRequestQueue(request);
+
+    }
+    /////////////////
 
 
 }

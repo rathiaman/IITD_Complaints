@@ -38,12 +38,12 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
     Button personal_post_comment, mark_as_resolved;
     ImageView particular_personal_complaint_image;
     private static EditText personal_comment;
-    String complaint_id1,complaint_title1,complaint_roomno1,complaint_contactinfo1,complaint_complainttype1,complaint_status1,complaint_description1;
-    String complaint_hostel1,complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
+    String complaint_id1, complaint_title1, complaint_roomno1, complaint_contactinfo1, complaint_complainttype1, complaint_status1, complaint_description1;
+    String complaint_hostel1, complaint_posted_by_first_name_1, complaint_posted_by_last_name_1;
 
     String logged_in_user_first_name, logged_in_user_last_name;
 
-    String[] comment_array,time_comment_array,first_name_array,last_name_array;
+    String[] comment_array, time_comment_array, first_name_array, last_name_array;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         setContentView(R.layout.activity_particular_personal_complaint);
 
         mark_as_resolved_button();
-        personal_comment = (EditText)findViewById(R.id.particular_personal_complaint_add_comment_answer);
-        personal_post_comment = (Button)findViewById(R.id.particular_personal_complaint_post_comment);
+        personal_comment = (EditText) findViewById(R.id.particular_personal_complaint_add_comment_answer);
+        personal_post_comment = (Button) findViewById(R.id.particular_personal_complaint_post_comment);
 
         Bundle extras = getIntent().getExtras();
 
@@ -73,15 +73,14 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         complaint_posted_by_first_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_first_name();
         complaint_posted_by_last_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_last_name();
 
-        TextView complaint_title = (TextView)findViewById(R.id.particular_personal_complaint_title_answer);
-        TextView complaint_postedby= (TextView)findViewById(R.id.particular_personal_complaint_posted_by_answer);
-        TextView complaint_roomno = (TextView)findViewById(R.id.particular_personal_complaint_room_no_answer);
-        TextView complaint_hostel =(TextView)findViewById(R.id.particular_personal_complaint_hostel_answer);
-        TextView complaint_type =(TextView)findViewById(R.id.particular_personal_complaint_type_answer);
-        TextView complaint_contactinfo =(TextView)findViewById(R.id.particular_personal_complaint_contact_info_answer);
-        TextView complaint_status =(TextView)findViewById(R.id.particular_personal_complaint_status_answer);
-        TextView complaint_description =(TextView)findViewById(R.id.particular_personal_complaint_description_answer);
-
+        TextView complaint_title = (TextView) findViewById(R.id.particular_personal_complaint_title_answer);
+        TextView complaint_postedby = (TextView) findViewById(R.id.particular_personal_complaint_posted_by_answer);
+        TextView complaint_roomno = (TextView) findViewById(R.id.particular_personal_complaint_room_no_answer);
+        TextView complaint_hostel = (TextView) findViewById(R.id.particular_personal_complaint_hostel_answer);
+        TextView complaint_type = (TextView) findViewById(R.id.particular_personal_complaint_type_answer);
+        TextView complaint_contactinfo = (TextView) findViewById(R.id.particular_personal_complaint_contact_info_answer);
+        TextView complaint_status = (TextView) findViewById(R.id.particular_personal_complaint_status_answer);
+        TextView complaint_description = (TextView) findViewById(R.id.particular_personal_complaint_description_answer);
 
 
         complaint_title.setText(complaint_title1);
@@ -101,8 +100,8 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_first_name + " ==== logged in user first name", Toast.LENGTH_LONG).show();
         Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_last_name + " ==== logged in user last name", Toast.LENGTH_LONG).show();
 
-        if (logged_in_user_first_name == complaint_posted_by_first_name_1){
-            if (logged_in_user_last_name == complaint_posted_by_last_name_1){
+        if (logged_in_user_first_name == complaint_posted_by_first_name_1) {
+            if (logged_in_user_last_name == complaint_posted_by_last_name_1) {
                 Toast.makeText(ParticularPersonalComplaint.this, " Ghusa andar", Toast.LENGTH_LONG).show();
                 complaint_postedby.setVisibility(View.GONE);
             }
@@ -127,7 +126,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
     }
 
-    public void submitNewComment(){
+    public void submitNewComment() {
 
         final String post_comment = personal_comment.getText().toString();
 
@@ -137,7 +136,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
         //url for grades
         String adder1 = IPAddress.getName();
-        String url="http://" + adder1 + "/complaint_system/tools/add_comment.php";
+        String url = "http://" + adder1 + "/complaint_system/tools/add_comment.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -146,17 +145,17 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                         messageDialog.hide();
                         //      Toast.makeText(Particular_thread.this, response.toString(), Toast.LENGTH_SHORT).show();
                         //dialog box
-                        JSONObject mainObject ;
+                        JSONObject mainObject;
 
                         try {
                             mainObject = new JSONObject(response);
                             String json_success = mainObject.getString("success");
 
-                            if (json_success == "true")
-                            {
-                                Toast.makeText(ParticularPersonalComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();}
-                            else
-                            {Toast.makeText(ParticularPersonalComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();}
+                            if (json_success == "true") {
+                                Toast.makeText(ParticularPersonalComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ParticularPersonalComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -170,29 +169,29 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                         Toast.makeText(ParticularPersonalComplaint.this, "Network Error", Toast.LENGTH_SHORT).show();
 
                     }
-                }){
+                }) {
 
             //used to store data and sent the string request
             @Override
             protected LinkedHashMap<String, String> getParams() {
                 LinkedHashMap<String, String> login_credentials = new LinkedHashMap<String, String>();
-                login_credentials.put("complaint_id",complaint_id1 );
-                login_credentials.put("complaint_type","1");
+                login_credentials.put("complaint_id", complaint_id1);
+                login_credentials.put("complaint_type", "1");
                 login_credentials.put("first_name", Profile_data.getfirst_Name());
-                login_credentials.put("last_name",Profile_data.getlast_Name());
+                login_credentials.put("last_name", Profile_data.getlast_Name());
                 login_credentials.put("comment_text", post_comment);
                 return login_credentials;
             }
 
 
-        };;
+        };
+        ;
 
         MySingleton.getInstance(this).addToRequestQueue(request);
 
     }
 
-    public void display_comment_data()
-    {
+    public void display_comment_data() {
 
         String adder1 = IPAddress.getName();
         String url = "http://" + adder1 + "/complaint_system/tools/show_comments.php";
@@ -217,7 +216,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
             protected LinkedHashMap<String, String> getParams() {
                 LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
                 data.put("complaint_id", complaint_id1);
-                data.put("complaint_type","1");
+                data.put("complaint_type", "1");
 
                 return data;
             }
@@ -225,12 +224,11 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(request);
     }
 
-    public void getresponse(String response)
-    {
+    public void getresponse(String response) {
 
-        JSONArray mainObject ;
+        JSONArray mainObject;
 
-        try{
+        try {
             mainObject = new JSONArray(response);
 
 
@@ -246,22 +244,21 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                 JSONObject childJSONObject = mainObject.getJSONObject(i);
                 comment_array[i] = childJSONObject.getString("comment");
                 time_comment_array[i] = childJSONObject.getString("time");
-                first_name_array[i]= childJSONObject.getString("first_name");
-                last_name_array[i]=childJSONObject.getString("last_name");
+                first_name_array[i] = childJSONObject.getString("first_name");
+                last_name_array[i] = childJSONObject.getString("last_name");
 
 
             }
 
             create_complaint_table();
-        }catch (JSONException e){
-            e.printStackTrace();}
-
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
 
-    public void create_complaint_table()
-    {
+    public void create_complaint_table() {
 
         TableLayout course_assig_table = (TableLayout) findViewById(R.id.particular_personal_complaint_comment_table);
         course_assig_table.setColumnShrinkable(2, true);
@@ -333,8 +330,6 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
             course_assig_table.addView(row2);
 
 
-
-
 ///////////////////////////////////////////////////////
             TableRow row3 = new TableRow(this);
             TableRow.LayoutParams lp3 = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -392,36 +387,53 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         }
     }
 
-    public void mark_as_resolved_button(){
+    public void mark_as_resolved_button() {
         mark_as_resolved = (Button) findViewById(R.id.particular_personal_complaint_mark_as_resolved);
 
-        mark_as_resolved.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calls the alert dialogue box
-                AlertDialog.Builder submit_alert = new AlertDialog.Builder(ParticularPersonalComplaint.this);
-                submit_alert.setMessage("").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // calls the function which send the request to the server
-                        marke_resolve_request();
+        if (PersonalComplaintDetails.getParticular_personal_complaint_status().equals("resolved")){
+            mark_as_resolved.setVisibility(View.GONE);
+        }
 
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+        else {
+            if (Profile_data.getAccount_type().equals("Student")){
+
+                mark_as_resolved.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {    // If no is pressed, you are taken back to the login screen
-                        dialog.cancel();
+                    public void onClick(View v) {
+                        // calls the alert dialogue box
+                        AlertDialog.Builder submit_alert = new AlertDialog.Builder(ParticularPersonalComplaint.this);
+                        submit_alert.setMessage("").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // calls the function which send the request to the server
+                                marke_resolve_request();
+                                mark_as_resolved.setVisibility(View.GONE);
+                                TextView complaint_status = (TextView) findViewById(R.id.particular_personal_complaint_status_answer);
+                                complaint_status.setText("Resolved");
+
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {    // If no is pressed, you are taken back to the login screen
+                                dialog.cancel();
+                            }
+                        });
+
+                        AlertDialog alert = submit_alert.create();
+                        alert.setTitle("Are you sure you want to mark this complaint as RESOLVED  !!!");
+                        alert.show();
+
                     }
                 });
-
-                AlertDialog alert = submit_alert.create();
-                alert.setTitle("Are you sure you want to mark this complaint as RESOLVED  !!!");
-                alert.show();
-
             }
-        });
-    }
 
+            else {
+                mark_as_resolved.setVisibility(View.GONE);
+            }
+
+        }
+
+}
     private void marke_resolve_request() {
 
         String adder1 = IPAddress.getName();

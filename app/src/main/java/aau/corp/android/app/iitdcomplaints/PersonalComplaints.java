@@ -1,5 +1,6 @@
 package aau.corp.android.app.iitdcomplaints;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -298,6 +299,10 @@ public class PersonalComplaints extends AppCompatActivity {
     public void displaydata()
     {
 
+        final ProgressDialog messageDialog = new ProgressDialog(this);
+        messageDialog.setMessage("Logging in");
+        messageDialog.show();
+
         String adder1 = IPAddress.getName();
 
         final String user_id = Profile_data.getuserid();
@@ -331,7 +336,9 @@ public class PersonalComplaints extends AppCompatActivity {
                 return data;
             }
         };
+        messageDialog.hide();
         MySingleton.getInstance(this).addToRequestQueue(request);
+
     }
 
     public void getresponse(String response)
@@ -365,7 +372,7 @@ public class PersonalComplaints extends AppCompatActivity {
                 if (stat ==0 )
                 {status_array[i] = "unresolved";}
                 else if (stat == 1)
-                {status_array[i] = "pending";}
+                {status_array[i] = "resolved";}
                 else
                 {
                     status_array[i] = "resolved";
