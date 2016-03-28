@@ -72,14 +72,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         complaint_hostel1 = PersonalComplaintDetails.getParticular_personal_complaint_hostel();
         complaint_posted_by_first_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_first_name();
         complaint_posted_by_last_name_1 = PersonalComplaintDetails.getParticular_personal_complaint_posted_by_last_name();
-        /*complaint_title1 = extras.getString("EXTRA_COMPLAINT_TITLE");
-        complaint_roomno1 = extras.getString("EXTRA_COMPLAINT_ROOM");
-        complaint_contactinfo1 = extras.getString("EXTRA_COMPLAINT_CONTACT");
-        complaint_complainttype1 = extras.getString("EXTRA_COMPLAINT_TYPE");
-        complaint_status1 = extras.getString("EXTRA_COMPLAINT_STATUS");
-        complaint_description1 = extras.getString("EXTRA_COMPLAINT_DESCRIPTION");
-        complaint_id1 = extras.getString("EXTRA_COMPLAINT_ID");
-*/
+
         TextView complaint_title = (TextView)findViewById(R.id.particular_personal_complaint_title_answer);
         TextView complaint_postedby= (TextView)findViewById(R.id.particular_personal_complaint_posted_by_answer);
         TextView complaint_roomno = (TextView)findViewById(R.id.particular_personal_complaint_room_no_answer);
@@ -119,7 +112,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
 
 ///////////////////////////////////////////////////////////////
-       //posting a new comment
+        //posting a new comment
         personal_post_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,7 +152,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                             mainObject = new JSONObject(response);
                             String json_success = mainObject.getString("success");
 
-                        if (json_success == "true")
+                            if (json_success == "true")
                             {
                                 Toast.makeText(ParticularPersonalComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();}
                             else
@@ -202,11 +195,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
     {
 
         String adder1 = IPAddress.getName();
-
-
-
-        String url;
-        url = "http://" + adder1 + "/complaint_system/tools/show_comments.php";
+        String url = "http://" + adder1 + "/complaint_system/tools/show_comments.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -261,7 +250,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                 last_name_array[i]=childJSONObject.getString("last_name");
 
 
-                }
+            }
 
             create_complaint_table();
         }catch (JSONException e){
@@ -415,7 +404,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // calls the function which send the request to the server
-                        //sendRequest();
+                        marke_resolve_request();
 
                     }
                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -431,6 +420,37 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void marke_resolve_request() {
+
+        String adder1 = IPAddress.getName();
+        String url = "http://" + adder1 + "/complaint_system/tools/change_status.php";
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(ParticularPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ParticularPersonalComplaint.this, error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            //used to store data and sent the string request
+            @Override
+            protected LinkedHashMap<String, String> getParams() {
+                LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
+                data.put("complaint_id", complaint_id1);
+                data.put("complaint_type","1");
+
+                return data;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(request);
     }
 
 }

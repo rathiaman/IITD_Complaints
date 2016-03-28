@@ -219,7 +219,6 @@ public class PersonalComplaints extends AppCompatActivity {
                 if(selectedItem.equals("Show Resolved Only"))
                 {
 
-                    Toast.makeText(PersonalComplaints.this, "Show Resolved Only", Toast.LENGTH_SHORT).show();
 
                     all_complaint_table.setVisibility(View.GONE);
                     unresolved_complaint_table.setVisibility(View.GONE);
@@ -302,7 +301,6 @@ public class PersonalComplaints extends AppCompatActivity {
         String adder1 = IPAddress.getName();
 
         final String user_id = Profile_data.getuserid();
-        Toast.makeText(PersonalComplaints.this, "good1", Toast.LENGTH_SHORT).show();
 
         String url;
         url = "http://" + adder1 + "/complaint_system/show_complaints/show_personal_complaints.php";
@@ -313,7 +311,7 @@ public class PersonalComplaints extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.e("hello1", response.toString());
 
-                        Toast.makeText(PersonalComplaints.this, response.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(PersonalComplaints.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
                     }
@@ -321,7 +319,6 @@ public class PersonalComplaints extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(PersonalComplaints.this, "bad", Toast.LENGTH_SHORT).show();
                         Toast.makeText(PersonalComplaints.this, error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
@@ -714,8 +711,6 @@ public class PersonalComplaints extends AppCompatActivity {
         TableLayout unresolved_complaint_table = (TableLayout) findViewById(R.id.unresolved_complaint_table);
         unresolved_complaint_table.setColumnShrinkable(2, true);
         unresolved_complaint_table.setStretchAllColumns(true);
-        Toast.makeText(PersonalComplaints.this, "unresolved table", Toast.LENGTH_SHORT).show();
-
 
         for (int i = 0; i < title_array.length; i++) {
             //Creating new tablerows and textviews
@@ -877,8 +872,6 @@ public class PersonalComplaints extends AppCompatActivity {
         for (int i = 0; i < title_array.length; i++) {
             //Creating new tablerows and textviews
             if (Integer.parseInt(type_array[i]) == 1) {
-
-                Toast.makeText(PersonalComplaints.this,"andar ghusa", Toast.LENGTH_SHORT).show();
 
 
                 TableRow row1 = new TableRow(this);

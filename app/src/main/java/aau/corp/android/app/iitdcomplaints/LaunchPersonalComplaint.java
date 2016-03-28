@@ -46,8 +46,6 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
 
     private Bitmap bitmap;
     private int PICK_IMAGE_REQUEST = 1;
-    private String KEY_IMAGE = "image";
-    private String KEY_NAME = "name";
     private ImageView upload_image_launch_personal_complaint;
 
     @Override
@@ -55,40 +53,34 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch_personal_complaint);
 
-
         spinner_type_list = (Spinner) findViewById(R.id.spinner_complaint_type_list);
         type_list_adapter = ArrayAdapter.createFromResource(this, R.array.search_list, android.R.layout.simple_spinner_item);
         type_list_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_type_list.setAdapter(type_list_adapter);
         spinner_type_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " --", Toast.LENGTH_LONG).show();
 
-                String selectedItem = parent.getItemAtPosition(position).toString();
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (selectedItem.equals("Electricity")) {
-                    complaint_typo = 1;
-                } else if (selectedItem.equals("Plumber")) {
-                    complaint_typo = 2;
-                } else if (selectedItem.equals("Carpentry")) {
-                    complaint_typo = 3;
-                } else if (selectedItem.equals("Internet Issues")) {
-                    complaint_typo = 4;
-                } else if (selectedItem.equals("Sweeper")) {
-                    complaint_typo = 5;
-                } else {
-                    complaint_typo = 6;
-                }
+            String selectedItem = parent.getItemAtPosition(position).toString();
 
-
+            if (selectedItem.equals("Electricity")) {
+                complaint_typo = 1;
+            }else if (selectedItem.equals("Plumber")) {
+                complaint_typo = 2;
+            }else if (selectedItem.equals("Carpentry")) {
+                complaint_typo = 3;
+            }else if (selectedItem.equals("Internet Issues")) {
+                complaint_typo = 4;
+            }else if (selectedItem.equals("Sweeper")) {
+                complaint_typo = 5;
+            }else {
+                complaint_typo = 6;
             }
-
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
         });
 
         choose_image = (Button) findViewById(R.id.personal_complaint_image_button);
@@ -127,15 +119,12 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
 
     }
 
-
-
     private void showFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,7 +151,6 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
         return encodedImage;
     }
 
-
     public void submitNewComplaint(){
 
         comment_title_edittext = (EditText)findViewById(R.id.editText_complaint_title);
@@ -176,7 +164,6 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
         final String contact = contact_edittext.getText().toString();
         final String tag_int = complaint_typo.toString();
         String adder1 = IPAddress.getName();
-
 
         if(comment_title.length() == 0){
             Toast.makeText(LaunchPersonalComplaint.this, "Title Required", Toast.LENGTH_SHORT).show();
@@ -208,9 +195,7 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Log.e("hello1", response.toString());
-                            Toast.makeText(LaunchPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
-
-
+                            Toast.makeText(LaunchPersonalComplaint.this,response.toString(), Toast.LENGTH_SHORT).show();
                         }
                     },
                     new Response.ErrorListener() {
@@ -228,32 +213,28 @@ public class LaunchPersonalComplaint extends AppCompatActivity {
                     login_credentials.put("user_id", Profile_data.getuserid());
                     login_credentials.put("first_name", Profile_data.getfirst_Name());
                     login_credentials.put("last_name", Profile_data.getlast_Name());
-                    login_credentials.put("hostel", Profile_data.getHostel());
+                    login_credentials.put("hostel", Integer.toString(HostelDetails.get_Particular_hostel_id(Profile_data.getHostel())));
                     login_credentials.put("title", comment_title);
                     login_credentials.put("description", description);
                     login_credentials.put("contact_info", contact);
                     login_credentials.put("tags", tag_int);
                     login_credentials.put("room_no", room_no);
 
-                    if (bitmap != null){
+                    if (bitmap != null) {
                         String image = getStringImage(bitmap);
-                        login_credentials.put(KEY_IMAGE, image);}
+                        login_credentials.put("image", image);
+                    }
                     return login_credentials;
                 }
-
-
-
             };
             ;
 
             // Add a request (in this example, called stringRequest) to your RequestQueue.
             MySingleton.getInstance(this).addToRequestQueue(request);
-            Toast.makeText(LaunchPersonalComplaint.this, "Your Complaint Has Been Posted", Toast.LENGTH_SHORT).show();
-            onBackPressed();
 
-            /*Intent in = new Intent(LaunchPersonalComplaint.this, PersonalComplaints.class);
+            Intent in = new Intent(LaunchPersonalComplaint.this, HomeScreen.class);
             startActivity(in);
-            *///loading.hide();
+            ///loading.hide();
         }
     }
 

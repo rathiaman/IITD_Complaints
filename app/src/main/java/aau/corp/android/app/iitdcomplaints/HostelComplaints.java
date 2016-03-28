@@ -220,7 +220,6 @@ public class HostelComplaints extends AppCompatActivity {
                 if(selectedItem.equals("Show Resolved Only"))
                 {
 
-                    Toast.makeText(HostelComplaints.this, "Show Resolved Only", Toast.LENGTH_SHORT).show();
 
                     all_hostel_complaint_table.setVisibility(View.GONE);
                     unresolved_hostel_complaint_table.setVisibility(View.GONE);
@@ -313,8 +312,7 @@ public class HostelComplaints extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.e("hello1", response.toString());
-                        Toast.makeText(HostelComplaints.this, "reponse--------"+ hostel_id, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(HostelComplaints.this, response.toString(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(HostelComplaints.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
                     }

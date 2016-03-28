@@ -146,7 +146,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
 
                             if (json_success == "true")
                             {
-                                Toast.makeText(ParticularInstituteComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();}
+                                Toast.makeText(ParticularInstituteComplaint.this, "Comment Posted", Toast.LENGTH_SHORT).show();}
                             else
                             {Toast.makeText(ParticularInstituteComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();}
 
@@ -197,7 +197,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
                     }
@@ -263,7 +263,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         update_vote(response);
 
                     }
@@ -372,7 +372,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(ParticularInstituteComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(ParticularInstituteComplaint.this, ParticularInstituteComplaint.class);
                         startActivity(in);
 
@@ -530,8 +530,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
 
         String address = InstituteComplaintDetails.getParticular_institute_complaint_image();
         String adder1 = IPAddress.getName();
-        Toast.makeText(ParticularInstituteComplaint.this, address + " ======", Toast.LENGTH_SHORT).show();
-        if (address.equals("no_image")) {
+         if (address.equals("no_image")) {
             particular_institute_complaint_image.setVisibility(View.GONE);
         } else {
             Picasso.with(this).load("http://" + adder1 + address).into(particular_institute_complaint_image);

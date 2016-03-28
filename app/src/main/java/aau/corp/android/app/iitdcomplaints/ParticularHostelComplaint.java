@@ -93,12 +93,9 @@ public class ParticularHostelComplaint extends AppCompatActivity {
         logged_in_user_first_name = Profile_data.getfirst_Name();
         logged_in_user_last_name = Profile_data.getlast_Name();
 
-        Toast.makeText(ParticularHostelComplaint.this, logged_in_user_first_name + " ==== logged in user first name", Toast.LENGTH_LONG).show();
-        Toast.makeText(ParticularHostelComplaint.this, logged_in_user_last_name + " ==== logged in user last name", Toast.LENGTH_LONG).show();
 
         if (logged_in_user_first_name == complaint_posted_by_first_name_1){
             if (logged_in_user_last_name == complaint_posted_by_last_name_1){
-                Toast.makeText(ParticularHostelComplaint.this, " Ghusa andar", Toast.LENGTH_LONG).show();
                 complaint_postedby.setVisibility(View.GONE);
             }
         }
@@ -151,7 +148,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
 
                             if (json_success == "true")
                             {
-                                Toast.makeText(ParticularHostelComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();}
+                                Toast.makeText(ParticularHostelComplaint.this, "Comment Posted ", Toast.LENGTH_SHORT).show();}
                             else
                             {Toast.makeText(ParticularHostelComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();}
 
@@ -202,7 +199,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
                     }
@@ -268,7 +265,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         update_vote(response);
 
                     }
@@ -378,7 +375,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         Intent in = new Intent(ParticularHostelComplaint.this, ParticularHostelComplaint.class);
                         startActivity(in);
 
@@ -537,8 +534,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
         String address = HostelComplaintDetails.getParticular_hostel_complaint_image();
         String adder1 = IPAddress.getName();
 
-        Toast.makeText(ParticularHostelComplaint.this, address + " ======", Toast.LENGTH_SHORT).show();
-        if (address.equals("no_image")) {
+         if (address.equals("no_image")) {
             particular_hostel_complaint_image.setVisibility(View.GONE);
         } else {
             Picasso.with(this).load("http://" + adder1 + address).into(particular_hostel_complaint_image);
