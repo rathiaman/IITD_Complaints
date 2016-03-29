@@ -1,6 +1,7 @@
 package aau.corp.android.app.iitdcomplaints;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -57,4 +58,8 @@ public class ProfileScreen extends AppCompatActivity {
     }
 
 
+    public void onBackPressed() {
+        Intent in = new Intent(ProfileScreen.this, HomeScreen.class);
+        startActivity(in);
+    }
 }

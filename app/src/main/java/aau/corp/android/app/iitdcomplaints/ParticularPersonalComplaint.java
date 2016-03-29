@@ -191,6 +191,18 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
 
     }
 
+    public void onBackPressed() {
+
+        if (Profile_data.getAccount_type() == "Worker"){
+            Intent in = new Intent(ParticularPersonalComplaint.this, Worker_complaints.class);
+            startActivity(in);
+
+        }
+       else {
+            Intent in = new Intent(ParticularPersonalComplaint.this, PersonalComplaints.class);
+            startActivity(in);
+        }
+    }
     public void display_comment_data() {
 
         String adder1 = IPAddress.getName();

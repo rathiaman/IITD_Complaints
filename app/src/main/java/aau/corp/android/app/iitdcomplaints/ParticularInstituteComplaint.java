@@ -58,6 +58,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
         button_downvote.setVisibility(View.GONE);
         button_upvote.setVisibility(View.GONE);
 
+        mark_as_resolved_button();
         show_image();
       
         ///////////////////////////////////
@@ -120,6 +121,11 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
         });
 
 
+    }
+
+    public void onBackPressed() {
+        Intent in = new Intent(ParticularInstituteComplaint.this, InstituteComplaints.class);
+        startActivity(in);
     }
 
     public void submitNewComment(){
@@ -610,7 +616,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
             protected LinkedHashMap<String, String> getParams() {
                 LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
                 data.put("complaint_id", complaint_id1);
-                data.put("complaint_type","1");
+                data.put("complaint_type","3");
 
                 return data;
             }

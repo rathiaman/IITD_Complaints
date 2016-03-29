@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FF6A00"
+    android:background="@drawable/ddd"
     tools:context="aau.corp.android.app.iitdcomplaints.LaunchInstituteComplaint">
 
     <ScrollView
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:text="Choose Image"
                 android:id="@+id/institute_complaint_image_button"
-                android:background="#c81126"
+                android:background="#140079"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
                 android:layout_below="@+id/editText_institute_complaint_contact_info"
@@ -151,7 +151,7 @@
                 android:id="@+id/submit_button_institute_complaint_launch"
                 android:layout_below="@+id/imageView_institute_complaint_launch"
                 android:layout_centerHorizontal="true"
-                android:background="#c81126"
+                android:background="#140079"
                 android:textColor="#FFFFFF"
                 android:text="Submit"
                 android:textSize="20dp"

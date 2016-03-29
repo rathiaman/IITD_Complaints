@@ -100,6 +100,12 @@ public class Worker_complaints extends AppCompatActivity {
     }
 
 
+    public void onBackPressed() {
+        Intent in = new Intent(Worker_complaints.this, HomeScreen.class);
+        startActivity(in);
+    }
+
+
     public void displaydata()
     {
 

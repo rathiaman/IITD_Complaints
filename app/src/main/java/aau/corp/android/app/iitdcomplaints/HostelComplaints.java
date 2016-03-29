@@ -52,6 +52,7 @@ public class HostelComplaints extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostel_complaints);
         onButtonClickListener_Launch_Hostel();
+        launch_button_hide();
 
         unresolved_hostel_complaint_table = (TableLayout) findViewById(R.id.unresolved_hostel_complaint_table);
         resolved_hostel_complaint_table =(TableLayout) findViewById(R.id.resolved_hostel_complaint_table);
@@ -282,6 +283,18 @@ public class HostelComplaints extends AppCompatActivity {
     }
 
 
+    public void launch_button_hide(){
+        launch_hostel_complaint = (Button) findViewById(R.id.launch_complaint_hostel);
+
+        if (Profile_data.getAccount_type() == "Warden"){
+            launch_hostel_complaint.setVisibility(View.GONE);
+        }
+    }
+
+    public void onBackPressed() {
+        Intent in = new Intent(HostelComplaints.this, HomeScreen.class);
+        startActivity(in);
+    }
 
     public void onButtonClickListener_Launch_Hostel(){
         launch_hostel_complaint = (Button) findViewById(R.id.launch_complaint_hostel);

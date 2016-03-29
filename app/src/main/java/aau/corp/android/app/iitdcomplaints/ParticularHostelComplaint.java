@@ -124,6 +124,11 @@ public class ParticularHostelComplaint extends AppCompatActivity {
 
     }
 
+    public void onBackPressed() {
+        Intent in = new Intent(ParticularHostelComplaint.this, HostelComplaints.class);
+        startActivity(in);
+    }
+
     public void submitNewComment(){
 
         final String post_comment = Hostel_comment.getText().toString();
@@ -627,7 +632,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
             protected LinkedHashMap<String, String> getParams() {
                 LinkedHashMap<String, String> data = new LinkedHashMap<String, String>();
                 data.put("complaint_id", complaint_id1);
-                data.put("complaint_type","1");
+                data.put("complaint_type","2");
 
                 return data;
             }

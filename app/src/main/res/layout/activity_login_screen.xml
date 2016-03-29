@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginScreen"
-    android:background="#FF6A00"
+    android:background="@drawable/ddd"
     android:overScrollMode="ifContentScrolls"
     android:scrollbarStyle="insideOverlay"
     android:scrollbars="vertical" >
@@ -99,7 +99,7 @@
                 android:id="@+id/login_button"
                 android:layout_below="@+id/show_password"
                 android:layout_centerHorizontal="true"
-                android:background="#c81126"
+                android:background="#140079"
                 android:textColor="#FFFFFF"
                 android:text="Login"
                 android:textSize="20dp"

@@ -50,6 +50,8 @@ public class InstituteComplaints extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_institute_complaints);
         onButtonClickListener_Launch_Institute();
+        launch_button_hide();
+
 
 
         unresolved_institute_complaint_table = (TableLayout) findViewById(R.id.unresolved_institute_complaint_table);
@@ -292,6 +294,19 @@ public class InstituteComplaints extends AppCompatActivity {
         });
     }
 
+
+    public void launch_button_hide(){
+        launch_institute_complaint = (Button) findViewById(R.id.launch_complaint_institute);
+
+        if (Profile_data.getAccount_type().equals("Institute Person")){
+            launch_institute_complaint.setVisibility(View.GONE);
+        }
+    }
+
+    public void onBackPressed() {
+        Intent in = new Intent(InstituteComplaints.this, HomeScreen.class);
+        startActivity(in);
+    }
 
     public void display_institutedata()
     {

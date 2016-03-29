@@ -11,7 +11,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="aau.corp.android.app.iitdcomplaints.ProfileScreen"
     tools:showIn="@layout/activity_profile_screen"
-    android:background="#FF6A00">
+    android:background="@drawable/ddd">
 
     <ScrollView
         android:layout_width="fill_parent"

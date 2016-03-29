@@ -282,6 +282,10 @@ public class PersonalComplaints extends AppCompatActivity {
     }
 
 
+    public void onBackPressed() {
+        Intent in = new Intent(PersonalComplaints.this, HomeScreen.class);
+        startActivity(in);
+    }
 
     public void onButtonClickListener_Launch_Personal(){
         launch_personal_complaint = (Button) findViewById(R.id.launch_complaint);
