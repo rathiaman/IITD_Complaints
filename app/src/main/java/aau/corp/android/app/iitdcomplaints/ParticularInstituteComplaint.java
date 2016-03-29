@@ -543,7 +543,7 @@ public class ParticularInstituteComplaint extends AppCompatActivity {
     public void mark_as_resolved_button() {
         mark_as_resolved = (Button) findViewById(R.id.particular_institute_complaint_mark_as_resolved);
 
-        if (PersonalComplaintDetails.getParticular_personal_complaint_status().equals("resolved")){
+        if (InstituteComplaintDetails.getParticular_institute_complaint_status().equals("resolved")){
             mark_as_resolved.setVisibility(View.GONE);
         }
 

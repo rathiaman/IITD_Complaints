@@ -98,6 +98,16 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+        complaints_others = (Button)findViewById(R.id.other_complaints);
+        complaints_others.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), Worker_complaints.class);
+                startActivity(in);
+
+            }
+        });
+
     }
 
     ///////////////////////////////////
@@ -201,7 +211,7 @@ public class HomeScreen extends AppCompatActivity {
     public void signout_method(){
         //url for grades
         String adder1 = IPAddress.getName();
-        String url="http://" + adder1 + "/user_action/signout_action.php";
+        String url="http://" + adder1 + "/complaint_system/user_action/signout_action.php";
         //String url="http://10.192.18.219:8000//courses/course.json/"+course_code+"/grades";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,

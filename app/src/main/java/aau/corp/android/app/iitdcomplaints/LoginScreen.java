@@ -153,13 +153,12 @@ public class LoginScreen extends AppCompatActivity {
         TextView password_text_for_login = (EditText) findViewById(R.id.edit_text_password);
         TextView user_name_for_login     = (EditText) findViewById(R.id.edit_text_username);
 
-        /*final String password_text_for_login_string   = password_text_for_login.getText().toString().trim();
+        final String password_text_for_login_string   = password_text_for_login.getText().toString().trim();
         final String user_name_for_login_string       = user_name_for_login.getText().toString().trim();
-        */
 
-        final String password_text_for_login_string   = "aman1";
+       /* final String password_text_for_login_string   = "aman1";
         final String user_name_for_login_string       = "ee1";
-
+*/
 
         //String url="http://" + adder1 + "/default/login.json?userid=cs1110200&password=john";
 

@@ -7,6 +7,66 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#FF6A00"
     tools:context="aau.corp.android.app.iitdcomplaints.Worker_complaints">
 
-</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_worker_filter_list"
+                android:layout_below="@+id/launch_complaint"
+                android:layout_marginTop="10dp">
+            </Spinner>
+
+            <TableLayout
+                android:id="@+id/worker_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_worker_filter_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+            </TableLayout>
+
+            <TableLayout
+                android:id="@+id/worker_resolved_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_worker_filter_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+            <TableLayout
+                android:id="@+id/worker_unresolved_complaint_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_worker_filter_list"
+
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </TableLayout>
+
+            </RelativeLayout>
+    </ScrollView>
+
+
+
+
+
+
+        </RelativeLayout>

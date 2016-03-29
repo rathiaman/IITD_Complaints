@@ -358,7 +358,7 @@ public class InstituteComplaints extends AppCompatActivity {
                 if (stat ==0 )
                 {status_array[i] = "unresolved";}
                 else if (stat == 1)
-                {status_array[i] = "pending";}
+                {status_array[i] = "resolved";}
                 else
                 {
                     status_array[i] = "resolved";

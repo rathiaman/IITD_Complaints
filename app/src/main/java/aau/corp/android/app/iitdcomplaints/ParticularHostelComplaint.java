@@ -299,12 +299,12 @@ public class ParticularHostelComplaint extends AppCompatActivity {
         try{
             object = new JSONObject(response);
 
-            Integer upvotes = object.getInt("upvotes");
-            Integer downvotes = object.getInt("downvotes");
+            final Integer upvotes = object.getInt("upvotes");
+            final Integer downvotes = object.getInt("downvotes");
             Integer has_voted = object.getInt("has_voted");
 
-            TextView complaint_upvotes = (TextView)findViewById(R.id.particular_hostel_complaint_upvotes_answer);
-            TextView complaint_downvotes = (TextView)findViewById(R.id.particular_hostel_complaint_downvotes_answer);
+            final TextView complaint_upvotes = (TextView)findViewById(R.id.particular_hostel_complaint_upvotes_answer);
+            final TextView complaint_downvotes = (TextView)findViewById(R.id.particular_hostel_complaint_downvotes_answer);
 
             complaint_upvotes.setText(upvotes.toString());
             complaint_downvotes.setText(downvotes.toString());
@@ -318,6 +318,11 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         vote_now("-1");
+                        Integer downvotes1 = downvotes + 1;
+                        complaint_downvotes.setText((downvotes1.toString()));
+                        button_upvote.setVisibility(View.GONE);
+                        button_downvote.setVisibility(View.GONE);
+
 
                     }
                 });
@@ -326,8 +331,16 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         vote_now("1");
+                        Integer upvotes1 = upvotes + 1;
+                        complaint_upvotes.setText((upvotes1.toString()));
+
+                        button_upvote.setVisibility(View.GONE);
+                        button_downvote.setVisibility(View.GONE);
+
                     }
                 });
+
+
             }
 
 /*
@@ -379,8 +392,8 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                        // Toast.makeText(ParticularHostelComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
-                        Intent in = new Intent(ParticularHostelComplaint.this, ParticularHostelComplaint.class);
-                        startActivity(in);
+                       // Intent in = new Intent(ParticularHostelComplaint.this, ParticularHostelComplaint.class);
+                       // startActivity(in);
 
                     }
                 },
@@ -547,7 +560,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
     public void mark_as_resolved_button() {
         mark_as_resolved = (Button) findViewById(R.id.particular_hostel_complaint_mark_as_resolved);
 
-        if (PersonalComplaintDetails.getParticular_personal_complaint_status().equals("resolved")){
+        if (HostelComplaintDetails.getParticular_hostel_complaint_status().equals("resolved")){
             mark_as_resolved.setVisibility(View.GONE);
         }
 
