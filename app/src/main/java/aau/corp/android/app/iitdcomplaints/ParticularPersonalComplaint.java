@@ -97,12 +97,12 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         logged_in_user_first_name = Profile_data.getfirst_Name();
         logged_in_user_last_name = Profile_data.getlast_Name();
 
-        Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_first_name + " ==== logged in user first name", Toast.LENGTH_LONG).show();
-        Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_last_name + " ==== logged in user last name", Toast.LENGTH_LONG).show();
+      //  Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_first_name + " ==== logged in user first name", Toast.LENGTH_LONG).show();
+      //  Toast.makeText(ParticularPersonalComplaint.this, logged_in_user_last_name + " ==== logged in user last name", Toast.LENGTH_LONG).show();
 
         if (logged_in_user_first_name == complaint_posted_by_first_name_1) {
             if (logged_in_user_last_name == complaint_posted_by_last_name_1) {
-                Toast.makeText(ParticularPersonalComplaint.this, " Ghusa andar", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(ParticularPersonalComplaint.this, " Ghusa andar", Toast.LENGTH_LONG).show();
                 complaint_postedby.setVisibility(View.GONE);
             }
         }
@@ -212,7 +212,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(ParticularPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                         getresponse(response);
 
                     }
@@ -455,7 +455,7 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ParticularPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(ParticularPersonalComplaint.this, response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {

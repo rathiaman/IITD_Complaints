@@ -189,8 +189,8 @@ public class LaunchHostelComplaint extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             Log.e("hello1", response.toString());
-                            Toast.makeText(LaunchHostelComplaint.this,"sending complaint", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(LaunchHostelComplaint.this,response.toString(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(LaunchHostelComplaint.this,"sending complaint", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(LaunchHostelComplaint.this,response.toString(), Toast.LENGTH_SHORT).show();
                         }
                     },
                     new Response.ErrorListener() {

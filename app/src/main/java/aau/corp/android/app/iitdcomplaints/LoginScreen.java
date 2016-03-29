@@ -242,7 +242,7 @@ public class LoginScreen extends AppCompatActivity {
                 startActivity(in);
             }
             else{
-                Toast.makeText(LoginScreen.this, "invalid login. Please Check Yor Login Details", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginScreen.this, "Invalid login. Please Check Yor Login Details", Toast.LENGTH_LONG).show();
             }
 
         } catch (JSONException e) {
