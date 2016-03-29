@@ -7,8 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#FF6A00"
-    tools:context="aau.corp.android.app.iitdcomplaints.ParticularInstituteComplaint">
+    tools:context="aau.corp.android.app.iitdcomplaints.ParticularInstituteComplaint"
+    android:background="@drawable/ddd">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,6 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +35,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginRight="20dp"
-        android:textSize="25dp" />
+        android:textSize="20dp"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -40,12 +46,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_title_answer"
         android:text="Answer"
-        android:textSize="25dp"
-        android:paddingLeft="20dp"
+        android:textSize="20dp"
         android:textStyle="italic"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/particular_institute_complaint_posted_by_answer"
-        android:layout_alignStart="@+id/particular_institute_complaint_posted_by_answer" />
+        android:layout_alignStart="@+id/particular_institute_complaint_posted_by_answer"
+        android:textIsSelectable="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,10 +59,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Posted By"
         android:id="@+id/particular_institute_complaint_posted_by"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/particular_institute_complaint_title"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -65,24 +73,29 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_posted_by_answer"
         android:text="Answer"
-        android:textSize="25dp"
-        android:paddingLeft="20dp"
+        android:textSize="20dp"
         android:textStyle="italic"
         android:layout_alignTop="@+id/particular_institute_complaint_posted_by"
         android:layout_toRightOf="@+id/particular_institute_complaint_type"
-        android:layout_toEndOf="@+id/particular_institute_complaint_type" />
+        android:layout_toEndOf="@+id/particular_institute_complaint_type"
+        android:textIsSelectable="false" />
 
-    
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Complaint type"
         android:id="@+id/particular_institute_complaint_type"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/particular_institute_complaint_posted_by"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -91,23 +104,31 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_type_answer"
         android:text="Answer"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
         android:layout_below="@+id/particular_institute_complaint_posted_by_answer"
         android:layout_toRightOf="@+id/particular_institute_complaint_type"
-        android:layout_toEndOf="@+id/particular_institute_complaint_type" />
+        android:layout_toEndOf="@+id/particular_institute_complaint_type"
+        android:textIsSelectable="false" />
+</LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Status"
         android:id="@+id/particular_institute_complaint_status"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/particular_institute_complaint_type"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -116,24 +137,31 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_status_answer"
         android:text="Answer"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
         android:layout_below="@+id/particular_institute_complaint_type_answer"
         android:layout_alignLeft="@+id/particular_institute_complaint_type_answer"
-        android:layout_alignStart="@+id/particular_institute_complaint_type_answer" />
+        android:layout_alignStart="@+id/particular_institute_complaint_type_answer"
+        android:textIsSelectable="false" />
+</LinearLayout>
 
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Upvotes"
         android:id="@+id/particular_institute_complaint_upvotes"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/particular_institute_complaint_status"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -142,12 +170,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_upvotes_answer"
         android:text="Answer"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
         android:layout_below="@+id/particular_institute_complaint_status_answer"
         android:layout_alignLeft="@+id/particular_institute_complaint_type_answer"
-        android:layout_alignStart="@+id/particular_institute_complaint_type_answer" />
+        android:layout_alignStart="@+id/particular_institute_complaint_type_answer"
+        android:textIsSelectable="false" />
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
@@ -155,10 +190,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Downvotes"
         android:id="@+id/particular_institute_complaint_downvotes"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/particular_institute_complaint_upvotes"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
 
     <TextView
@@ -167,12 +204,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/particular_institute_complaint_downvotes_answer"
         android:text="Answer"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:paddingLeft="20dp"
         android:textStyle="italic"
         android:layout_below="@+id/particular_institute_complaint_upvotes_answer"
         android:layout_alignLeft="@+id/particular_institute_complaint_type_answer"
-        android:layout_alignStart="@+id/particular_institute_complaint_type_answer" />
+        android:layout_alignStart="@+id/particular_institute_complaint_type_answer"
+        android:textIsSelectable="false" />
+                </LinearLayout>
 
 
     <TextView
@@ -183,10 +222,12 @@
         android:id="@+id/particular_institute_complaint_description"
         android:layout_below="@id/particular_institute_complaint_downvotes"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_marginRight="20dp"
-        android:textSize="25dp" />
+        android:textSize="20dp"
+        android:textIsSelectable="false"
+        android:textColor="#000b7e" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -197,7 +238,6 @@
         android:layout_below="@+id/particular_institute_complaint_description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="20dp"
         android:textStyle="italic" />
@@ -219,24 +259,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
                 android:paddingLeft="50dp"
-                android:paddingRight="50dp"
-                android:layout_below="@+id/particular_institute_complaint_image"
-                android:layout_centerHorizontal="true" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Enter a new Comment"
-                android:id="@+id/particular_complaint_add_comment"
-                android:layout_below="@+id/particular_institute_complaint_mark_as_resolved"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="20dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginRight="20dp"
-                android:textSize="25dp" />
-
+                android:paddingRight="50dp"/>
 
 
             <EditText
@@ -245,13 +268,8 @@
                 android:inputType="textMultiLine"
                 android:ems="10"
                 android:id="@+id/particular_institute_complaint_add_comment_answer"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/particular_complaint_add_comment"
                 android:layout_marginLeft="10dp"
-                android:layout_alignParentBottom="false"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:hint="Enter Your comment here"/>
 
 
 
@@ -259,15 +277,18 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Post"
+                android:text="Press to submit your comment"
                 android:id="@+id/particular_institute_complaint_post_comment"
                 android:background="#c81126"
                 android:textColor="#FFFFFF"
-                android:textSize="12dp"
-                android:layout_above="@+id/particular_personal_complaint_add_comment_answer"
-                android:layout_alignTop="@+id/particular_complaint_add_comment"
-                android:layout_toRightOf="@+id/particular_complaint_add_comment" />
+                android:textSize="17dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -276,8 +297,8 @@
                 android:textColor="#FFFFFF"
                 android:textSize="12dp"
                 android:id="@+id/button_upvote"
-                android:layout_below="@+id/particular_institute_complaint_add_comment_answer"
-                android:layout_centerHorizontal="true" />
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -292,6 +313,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="33dp" />
 
+                </LinearLayout>
+
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,8 +326,9 @@
 
             </TableLayout>
 
-
+            </LinearLayout>
         </RelativeLayout>
+
     </ScrollView>
 
 

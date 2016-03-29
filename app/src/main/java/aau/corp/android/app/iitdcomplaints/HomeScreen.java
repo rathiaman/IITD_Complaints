@@ -98,12 +98,27 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+
+
         complaints_others = (Button)findViewById(R.id.other_complaints);
         complaints_others.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getApplicationContext(), Worker_complaints.class);
-                startActivity(in);
+
+                if(Profile_data.getAccount_type() == "Worker")
+
+                {Intent in = new Intent(getApplicationContext(), Worker_complaints.class);
+                    startActivity(in);}
+
+                else if (Profile_data.getAccount_type() == "Institute Person")
+                {Intent in = new Intent(getApplicationContext(), InstituteComplaints.class);
+                    startActivity(in);
+                }
+                else if (Profile_data.getAccount_type() == "Warden")
+                {Intent in = new Intent(getApplicationContext(), HostelComplaints.class);
+                    startActivity(in);
+                }
+
 
             }
         });
