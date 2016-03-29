@@ -138,56 +138,61 @@ public class ParticularPersonalComplaint extends AppCompatActivity {
         String adder1 = IPAddress.getName();
         String url = "http://" + adder1 + "/complaint_system/tools/add_comment.php";
 
-        StringRequest request = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        messageDialog.hide();
-                        //      Toast.makeText(Particular_thread.this, response.toString(), Toast.LENGTH_SHORT).show();
-                        //dialog box
-                        JSONObject mainObject;
 
-                        try {
-                            mainObject = new JSONObject(response);
-                            String json_success = mainObject.getString("success");
+        if (post_comment.length() == 0){Toast.makeText(ParticularPersonalComplaint.this, "The comment size is zero", Toast.LENGTH_SHORT).show();}
 
-                            if (json_success == "true") {
-                                Toast.makeText(ParticularPersonalComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(ParticularPersonalComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();
+        else {
+            StringRequest request = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            messageDialog.hide();
+                            //      Toast.makeText(Particular_thread.this, response.toString(), Toast.LENGTH_SHORT).show();
+                            //dialog box
+                            JSONObject mainObject;
+
+                            try {
+                                mainObject = new JSONObject(response);
+                                String json_success = mainObject.getString("success");
+
+                                if (json_success == "true") {
+                                    Toast.makeText(ParticularPersonalComplaint.this, "Comment Posted. Reload ", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(ParticularPersonalComplaint.this, "Unable to Post Comment ", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(ParticularPersonalComplaint.this, "Network Error", Toast.LENGTH_SHORT).show();
 
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ParticularPersonalComplaint.this, "Network Error", Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
 
-                    }
-                }) {
-
-            //used to store data and sent the string request
-            @Override
-            protected LinkedHashMap<String, String> getParams() {
-                LinkedHashMap<String, String> login_credentials = new LinkedHashMap<String, String>();
-                login_credentials.put("complaint_id", complaint_id1);
-                login_credentials.put("complaint_type", "1");
-                login_credentials.put("first_name", Profile_data.getfirst_Name());
-                login_credentials.put("last_name", Profile_data.getlast_Name());
-                login_credentials.put("comment_text", post_comment);
-                return login_credentials;
-            }
+                //used to store data and sent the string request
+                @Override
+                protected LinkedHashMap<String, String> getParams() {
+                    LinkedHashMap<String, String> login_credentials = new LinkedHashMap<String, String>();
+                    login_credentials.put("complaint_id", complaint_id1);
+                    login_credentials.put("complaint_type", "1");
+                    login_credentials.put("first_name", Profile_data.getfirst_Name());
+                    login_credentials.put("last_name", Profile_data.getlast_Name());
+                    login_credentials.put("comment_text", post_comment);
+                    return login_credentials;
+                }
 
 
-        };
-        ;
+            };
 
-        MySingleton.getInstance(this).addToRequestQueue(request);
+            MySingleton.getInstance(this).addToRequestQueue(request);
+
+        }
 
     }
 

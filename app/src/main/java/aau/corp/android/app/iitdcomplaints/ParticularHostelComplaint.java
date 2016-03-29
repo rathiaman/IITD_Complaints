@@ -190,7 +190,7 @@ public class ParticularHostelComplaint extends AppCompatActivity {
                 }
 
 
-            };;
+            };
 
             MySingleton.getInstance(this).addToRequestQueue(request);
 
